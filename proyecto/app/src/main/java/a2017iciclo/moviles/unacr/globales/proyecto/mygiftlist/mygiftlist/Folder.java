@@ -20,7 +20,7 @@ final public class Folder extends ArrayList<String> {
     SharedPreferences v_Sp_Preferences;
     SharedPreferences.Editor v_sp_Editor;
     Context v_c_Contexto;
-    Folder(Context contexto){
+    public Folder(Context contexto){
         super();
         this.v_c_Contexto=contexto;
         this.init();

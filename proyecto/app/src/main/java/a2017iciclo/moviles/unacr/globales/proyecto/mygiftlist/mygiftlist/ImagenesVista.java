@@ -6,6 +6,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+/**
+ * falta generar las imagenes con la carpera correspondiente
+ * cambiar el fab por el icono de camara para que invoque a la camara
+ *
+ *
+ *
+ * */
+
 
 public class ImagenesVista extends AppCompatActivity {
     static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";

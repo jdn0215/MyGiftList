@@ -1,11 +1,17 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TableLayout;
+/**
+ * agregar un botón que sirva para crear carpertas
+ * menu contextual para eliminar o renombrar carpetas
+ *
+ * */
+
+
 
 public class MainActivity extends AppCompatActivity {
     Folder v_F_M_folders;

@@ -1,6 +1,7 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -23,6 +24,8 @@ public class Component {
         wrapper = new FrameLayout(context);
         imagen = new ImageView(context);
         title = new TextView(context);
+        title.setTextColor(Color.BLACK);
+        title.setTextSize(15);
         imagen.setImageResource(idImage);
         title.setText(TxtTitle);
         wrapper.addView(this.imagen);

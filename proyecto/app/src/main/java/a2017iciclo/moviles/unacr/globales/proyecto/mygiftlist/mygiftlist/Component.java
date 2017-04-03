@@ -31,6 +31,9 @@ public class Component {
         wrapper.addView(this.imagen);
         wrapper.addView(this.title);
     }
+    final public String getTitle(){
+        return this.title.getText().toString();
+    }
     final public View get(){
         return this.wrapper;
     }

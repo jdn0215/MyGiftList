@@ -1,8 +1,10 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TableLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     void addEvent(Component c){
-        
+        final String name = c.getTitle();
+        c.get().setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
+                intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,name);
+                startActivity(intento);
+            }
+        });
     }
 }
+
+
+
+
+

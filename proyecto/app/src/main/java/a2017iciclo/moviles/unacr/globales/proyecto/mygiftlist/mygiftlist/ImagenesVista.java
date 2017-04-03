@@ -18,6 +18,7 @@ import android.view.View;
 public class ImagenesVista extends AppCompatActivity {
     static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";
     String current;
+    Gifts gifts; //para gestionar la tabla con las imagenes y el titulo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

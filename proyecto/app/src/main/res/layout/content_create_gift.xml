@@ -77,7 +77,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/precio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -89,7 +89,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/camara"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activity_vertical_margin"
@@ -111,7 +111,7 @@
             android:layout_margin="@dimen/activity_vertical_margin">
 
             <ImageButton
-                android:id="@+id/imageButton6"
+                android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_green_dark"
@@ -132,7 +132,7 @@
             android:layout_margin="@dimen/activity_vertical_margin">
 
             <ImageButton
-                android:id="@+id/imageButton7"
+                android:id="@+id/cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_red_light"

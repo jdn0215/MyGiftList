@@ -2,7 +2,6 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
+import android.widget.Toast;
 
 import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.id.btn_agregar;
 
@@ -35,7 +35,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.init();
 
-        DemeTexto(findViewById(btn_agregar));
+        Button agregar=(Button)findViewById(R.id.btn_agregar);
+
+        agregar.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+
+            public void onClick(View arg0) {
+                DemeTexto(findViewById(R.id.btn_agregar));
+            }
+
+        });
+
+
 
 
 
@@ -54,13 +66,15 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         v_F_M_folders.add(texto.getText().toString());
+                        cleanTable();
+
                     }
                 });
 
         builder1.setNegativeButton("Cancelar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
+                        Mensaje("Evento no agregado");
                     }
                 });
 
@@ -75,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     void initAttributes(){
         this.v_F_M_folders = new Folder(super.getApplicationContext());
         this.v_TL_M_table  = (TableLayout) findViewById(R.id.carpetas);
-        this.v_TC_M_creator=new TableCreator(this.v_TL_M_table,super.getApplicationContext(),3);
+        this.v_TC_M_creator=new TableCreator(this.v_TL_M_table,super.getApplicationContext(),2);
     }
     void initTable(){
         for(int i=0;i<v_F_M_folders.size();i++){
@@ -100,7 +114,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void Mensaje(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 
+    private void cleanTable() {
+        TableLayout table = (TableLayout) findViewById(R.id.carpetas);
+        table.removeAllViews();
+    }
 }
 
 

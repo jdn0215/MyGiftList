@@ -2,6 +2,7 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ final public class Folder extends ArrayList<String> {
         this.v_sp_F_Editor = this.v_Sp_F_Preferences.edit();
         this.load();
     }
-    void load(){
+    /*void load(){//el viejo
         int size = this.v_Sp_F_Preferences.getInt(Folder.s_S_F_size,0);
         if(size == 0){
             //si el shared no tiene nada, lo agrega y a la vez actualiza el shared
@@ -43,18 +44,24 @@ final public class Folder extends ArrayList<String> {
                 super.add(folder);
             }
         }
+    }*/
+    void load(){
+        for(int i = 0;i <v_Sp_F_Preferences.getAll().size(); i++){
+            String folder="";
+            this.v_Sp_F_Preferences.getString(""+i,folder);
+            super.add(folder);
+        }
     }
 
 
     @Override
     public boolean add(String nuevaCarpeta){
-        if(super.indexOf(nuevaCarpeta)!= -1)
-            return false;
-        this.addFolder(nuevaCarpeta);
-        return addFolder(nuevaCarpeta) && super.add(nuevaCarpeta);
+        addFolder(nuevaCarpeta);
+        return super.add(nuevaCarpeta);
+
     }
     boolean addFolder(String name){
-        this.v_sp_F_Editor.putString(Folder.s_S_F_index+super.size(),name);
+        this.v_sp_F_Editor.putString(""+v_Sp_F_Preferences.getAll().size(),name);
         return this.v_sp_F_Editor.commit();
     }
 
@@ -66,5 +73,7 @@ final public class Folder extends ArrayList<String> {
         super.remove(index);
         return true;
     }
-
+    public void Mensaje(String msg){
+        Toast.makeText(v_c_F_Contexto, msg, Toast.LENGTH_SHORT).show();
+    }
 }

@@ -16,10 +16,10 @@ final public class Folder extends ArrayList<String> {
     static String s_S_F_size=Folder.s_S_F_preferenceName+"_size";
     static String s_S_F_index = Folder.s_S_F_preferenceName+"_";
 
-
     SharedPreferences v_Sp_F_Preferences;
     SharedPreferences.Editor v_sp_F_Editor;
     Context v_c_F_Contexto;
+
     public Folder(Context contexto){
         super();
         this.v_c_F_Contexto=contexto;
@@ -35,6 +35,7 @@ final public class Folder extends ArrayList<String> {
         if(size == 0){
             //si el shared no tiene nada, lo agrega y a la vez actualiza el shared
             this.add("My Gift List");
+            //pero porque? :/ de que sirve tener una carpeta si estara vacio
         }else{
             //va de indice en indece tomando cada folder
             for(int i = 0;i < size; i++){

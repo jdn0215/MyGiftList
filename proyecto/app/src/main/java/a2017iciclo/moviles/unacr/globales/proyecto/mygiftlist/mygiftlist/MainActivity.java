@@ -1,14 +1,22 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
+
+import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.id.btn_agregar;
+
 /**
  * agregar un botón que sirva para crear carpertas
  * menu contextual para eliminar o renombrar carpetas
- *
+ *L-> si ok toy en eso :v
  * */
 
 
@@ -20,12 +28,46 @@ public class MainActivity extends AppCompatActivity {
     boolean colorFlag = true;
     String color1 = "#E0F2F7";
     String color2 = "#F2E0F7";
+    static EditText texto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.init();
+
+        DemeTexto(findViewById(btn_agregar));
+
+
+
     }
+    public void DemeTexto(View view){
+        // Uso:
+        texto =  new EditText(view.getContext());
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+        builder1.setMessage("Digite el nuevo nombre para el evento:");
+        texto.setText("nombre nuevo para la carpeta");
+        texto.selectAll();
+        builder1.setView(texto);
+
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        v_F_M_folders.add(texto.getText().toString());
+                    }
+                });
+
+        builder1.setNegativeButton("Cancelar",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
+    };
     void init(){
         this.initAttributes();
         this.initTable();
@@ -57,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
 
 

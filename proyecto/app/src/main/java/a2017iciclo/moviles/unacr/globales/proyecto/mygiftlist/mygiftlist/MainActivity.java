@@ -66,8 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         v_F_M_folders.add(texto.getText().toString());
-                        cleanTable();
-
+                        agregarRow(v_F_M_folders.get(v_F_M_folders.size()-1));
                     }
                 });
 
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     void init(){
         this.initAttributes();
         this.initTable();
+
     }
     void initAttributes(){
         this.v_F_M_folders = new Folder(super.getApplicationContext());
@@ -93,13 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
     void initTable(){
         for(int i=0;i<v_F_M_folders.size();i++){
-            Component comp=new Component(super.getApplicationContext(),R.drawable.carpeta,v_F_M_folders.get(i));
-            if(colorFlag)
-                comp.get().setBackgroundColor(Color.parseColor(color1));
-            else comp.get().setBackgroundColor(Color.parseColor(color2));
-            colorFlag = !colorFlag;
-            addEvent(comp);
-            v_TC_M_creator.addComponent(comp);
+            agregarRow(v_F_M_folders.get(i));
         }
     }
     void addEvent(Component c){
@@ -117,10 +111,17 @@ public class MainActivity extends AppCompatActivity {
     public void Mensaje(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 
-    private void cleanTable() {
-        TableLayout table = (TableLayout) findViewById(R.id.carpetas);
-        table.removeAllViews();
+
+    private void agregarRow(String nombre){
+        Component comp=new Component(super.getApplicationContext(),R.drawable.carpeta,nombre);
+        if(colorFlag)
+            comp.get().setBackgroundColor(Color.parseColor(color1));
+        else comp.get().setBackgroundColor(Color.parseColor(color2));
+        colorFlag = !colorFlag;
+        addEvent(comp);
+        v_TC_M_creator.addComponent(comp);
     }
+
 }
 
 

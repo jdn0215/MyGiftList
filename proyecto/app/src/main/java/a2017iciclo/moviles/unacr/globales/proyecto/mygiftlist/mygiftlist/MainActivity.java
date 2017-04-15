@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         texto =  new EditText(view.getContext());
         AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
         builder1.setMessage("Digite el nuevo nombre para el evento:");
-        texto.setText("nombre nuevo para la carpeta");
+        texto.setText("nombre");
         texto.selectAll();
         builder1.setView(texto);
 

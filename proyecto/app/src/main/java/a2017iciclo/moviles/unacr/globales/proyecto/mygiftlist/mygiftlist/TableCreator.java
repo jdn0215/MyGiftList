@@ -22,7 +22,8 @@ public class TableCreator {
         TableRow row = (TableRow)table.getChildAt( table.getChildCount() - 1);
         int  k = row.getChildCount();
         if( k >= this.maxSize){
-            table.addView(new TableRow(this.context));
+            TableRow tr=new TableRow(this.context);
+            table.addView(tr);
             row = (TableRow)table.getChildAt( table.getChildCount() - 1);
         }
         return row;
@@ -30,9 +31,7 @@ public class TableCreator {
     public void addComponent(Component comp){
         if(comp!=null){
             this.getCurrentRow().addView(comp.get());
-            /*TextView tx=new TextView(this.context);
-            tx.setText(comp.getTitle());
-            this.getCurrentRow().addView(tx);*/
         }
     }
+
 }

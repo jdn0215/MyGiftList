@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.id.btn_agregar;
@@ -46,11 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
+        registrarmenuscontexto();
     }
     public void DemeTexto(View view){
         // Uso:
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     void initAttributes(){
         this.v_F_M_folders = new Folder(super.getApplicationContext());
         this.v_TL_M_table  = (TableLayout) findViewById(R.id.carpetas);
-        this.v_TC_M_creator=new TableCreator(this.v_TL_M_table,super.getApplicationContext(),2);
+        this.v_TC_M_creator=new TableCreator(this.v_TL_M_table,super.getApplicationContext(),1);
     }
     void initTable(){
         for(int i=0;i<v_F_M_folders.size();i++){
@@ -120,6 +119,34 @@ public class MainActivity extends AppCompatActivity {
         colorFlag = !colorFlag;
         addEvent(comp);
         v_TC_M_creator.addComponent(comp);
+    }
+
+
+    private void registrarmenuscontexto(){
+        for(int i=0;i<v_TL_M_table.getChildCount();i++) {
+            TableRow row = (TableRow) v_TL_M_table.getChildAt(i);
+            registerForContextMenu(row);
+        }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+            menu.add(0, 1, 0, "Eliminar");
+            menu.add(0, 2, 0, "Cancelar");
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        int opcionseleccionada = item.getItemId();
+        switch (item.getItemId()) {
+            case 1: Mensaje("Eliminado"); break;
+            case 2: Mensaje("Cancelado"); break;
+            default:  Mensaje("No clasificado"); break;
+        }
+        return true;
     }
 
 }

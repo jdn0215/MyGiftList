@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        registrarmenuscontexto();
+
     }
     public void DemeTexto(View view){
         // Uso:
@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+        registerForContextMenu(c.get());
     }
 
     public void Mensaje(String msg){
@@ -118,17 +119,18 @@ public class MainActivity extends AppCompatActivity {
         else comp.get().setBackgroundColor(Color.parseColor(color2));
         colorFlag = !colorFlag;
         addEvent(comp);
-        v_TC_M_creator.addComponent(comp);
+        this.v_TC_M_creator.addComponent(comp);
+
     }
 
-
+/*
     private void registrarmenuscontexto(){
-        for(int i=0;i<v_TL_M_table.getChildCount();i++) {
-            TableRow row = (TableRow) v_TL_M_table.getChildAt(i);
+        for(int i=0;i<this.v_TL_M_table.getChildCount();i++) {
+            TableRow row = (TableRow) this.v_TL_M_table.getChildAt(i);
             registerForContextMenu(row);
         }
     }
-
+*/
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -148,7 +150,19 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
+    public void DialogoSiNo(View view){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
+        builder1.setMessage("Desea eliminar este elemento.");
+        builder1.setCancelable(true);
+        builder1.setPositiveButton("Si",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {Mensaje("positivo"); } });
+        builder1.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {Mensaje("negativo"); } });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    };
 }
 
 

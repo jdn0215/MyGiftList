@@ -15,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.id.btn_agregar;
+import static android.os.Build.VERSION_CODES.M;
 
 /**
  * agregar un botón que sirva para crear carpertas
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     boolean colorFlag = true;
     String color1 = "#E0F2F7";
     String color2 = "#F2E0F7";
+    int v_I_MA_paraeliminar=-1;
     static EditText texto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,14 +125,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-/*
-    private void registrarmenuscontexto(){
-        for(int i=0;i<this.v_TL_M_table.getChildCount();i++) {
-            TableRow row = (TableRow) this.v_TL_M_table.getChildAt(i);
-            registerForContextMenu(row);
-        }
-    }
-*/
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -141,15 +135,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-
         int opcionseleccionada = item.getItemId();
         switch (item.getItemId()) {
-            case 1: Mensaje("Eliminado"); break;
+            case 1: {
+            //v_F_M_folders.remover(""+item.getTitle());
+            //recreate();
+            }; break;
             case 2: Mensaje("Cancelado"); break;
-            default:  Mensaje("No clasificado"); break;
         }
         return true;
     }
+
+
+
+
     public void DialogoSiNo(View view){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
         builder1.setMessage("Desea eliminar este elemento.");

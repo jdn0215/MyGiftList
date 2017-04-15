@@ -24,6 +24,8 @@ public class Component {
     ImageView imagen;
     TextView title;
     Context context;
+
+
     public Component(Context context,int idImage,String TxtTitle){
         this.context=context;
         init(idImage,TxtTitle);

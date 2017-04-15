@@ -3,6 +3,7 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.content.Context;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 /**
  * Created by jdani on 2/4/2017.
@@ -29,6 +30,9 @@ public class TableCreator {
     public void addComponent(Component comp){
         if(comp!=null){
             this.getCurrentRow().addView(comp.get());
+            /*TextView tx=new TextView(this.context);
+            tx.setText(comp.getTitle());
+            this.getCurrentRow().addView(tx);*/
         }
     }
 }

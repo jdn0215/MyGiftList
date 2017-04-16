@@ -46,7 +46,7 @@ public class ImagenesVista extends AppCompatActivity {
 
     void cargarGifts(){
         this.gifts = new Gifts((TableLayout) super.findViewById(R.id.include),super.getApplicationContext(),3);
-        
+
     }
 
     void setBarra(String msg){

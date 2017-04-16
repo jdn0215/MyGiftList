@@ -1,4 +1,5 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,12 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.id.btn_agregar;
-import static android.os.Build.VERSION_CODES.M;
 
 /**
  * agregar un botón que sirva para crear carpertas
@@ -29,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     Folder v_F_M_folders;
     TableCreator v_TC_M_creator;
     TableLayout v_TL_M_table;
+
+    String seleccionado;
+
+
     boolean colorFlag = true;
     String color1 = "#E0F2F7";
     String color2 = "#F2E0F7";
@@ -107,6 +110,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+        c.get().setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View v){
+                FrameLayout w = (FrameLayout)findViewById(v.getId());
+                seleccionado = ((TextView)w.getChildAt(0)).getText().toString();
+                return true;
+            }
+        });
         registerForContextMenu(c.get());
     }
 
@@ -138,11 +149,12 @@ public class MainActivity extends AppCompatActivity {
         int opcionseleccionada = item.getItemId();
         switch (item.getItemId()) {
             case 1: {
-            //v_F_M_folders.remover(""+item.getTitle());
+            v_F_M_folders.remover(""+item.getTitle());
             //recreate();
             }; break;
             case 2: Mensaje("Cancelado"); break;
         }
+        //this.v_F_M_folders.remover("la carpeta");
         return true;
     }
 

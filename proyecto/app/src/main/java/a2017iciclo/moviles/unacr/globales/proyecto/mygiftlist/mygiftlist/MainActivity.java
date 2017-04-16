@@ -110,13 +110,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+
         c.get().setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View v){
-                FrameLayout w = (FrameLayout)findViewById(v.getId());
-                seleccionado = ((TextView)w.getChildAt(0)).getText().toString();
+
+                //>:(
                 return true;
             }
+
         });
         registerForContextMenu(c.get());
     }
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        Mensaje("");
         super.onCreateContextMenu(menu, v, menuInfo);
             menu.add(0, 1, 0, "Eliminar");
             menu.add(0, 2, 0, "Cancelar");
@@ -149,8 +152,7 @@ public class MainActivity extends AppCompatActivity {
         int opcionseleccionada = item.getItemId();
         switch (item.getItemId()) {
             case 1: {
-            v_F_M_folders.remover(""+item.getTitle());
-            //recreate();
+            v_F_M_folders.remover(seleccionado);
             }; break;
             case 2: Mensaje("Cancelado"); break;
         }

@@ -79,16 +79,29 @@ public class CreateGift extends AppCompatActivity {
         }
         else save(create());
     }
+
+
+
+
     void save(Gift _new){
 
     }
 
+
+
+
+
     String validar(){
         return "TODO";
     }
+
     Gift create(){
         return null;
     }
+
+
+
+
     void cancel(){
         super.onBackPressed();
     }

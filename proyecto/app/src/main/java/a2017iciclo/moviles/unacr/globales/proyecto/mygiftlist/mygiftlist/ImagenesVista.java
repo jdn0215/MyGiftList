@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TableLayout;
+
 /**
  * falta generar las imagenes con la carpeta correspondiente
  * cambiar el fab por el icono de camara para que invoque a la camara
@@ -28,8 +30,8 @@ public class ImagenesVista extends AppCompatActivity {
         init();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                @Override
+                public void onClick(View view) {
                 Intent i = new Intent(ImagenesVista.super.getApplicationContext(),CreateGift.class);
                 i.putExtra(ImagenesVista.s_S_IV_argumentoNombre,current);
                 startActivity(i);
@@ -39,7 +41,14 @@ public class ImagenesVista extends AppCompatActivity {
     void init(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
         this.setBarra(current);
+        this.cargarGifts();
     }
+
+    void cargarGifts(){
+        this.gifts = new Gifts((TableLayout) super.findViewById(R.id.include),super.getApplicationContext(),3);
+        
+    }
+
     void setBarra(String msg){
         getSupportActionBar().setTitle(msg);
     }

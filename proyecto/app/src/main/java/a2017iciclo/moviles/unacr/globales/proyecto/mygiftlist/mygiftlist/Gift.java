@@ -11,16 +11,17 @@ public class Gift extends Component{
         public double lat,lng;
         Position(double a,double b){lat = a; lng = b;}
     };
-    String img,descp,nombre;
+    String img,descp,nombre,folder;
     Position pt;
     int precio;
-    public Gift(Context cont, double arg0, double arg1, String arg2, String arg3, String arg4, int arg5){
+    public Gift(Context cont, double arg0, double arg1, String arg2, String arg3, String arg4, int arg5,String folder){
         super(cont,arg2,arg4);
         this.pt    = new Position(arg0,arg1);
         this.img   = arg2;
         this.descp = arg3;
         this.nombre= arg4;
         this.precio= arg5;
+        this.folder = folder;
     }
     public Position getPos    (){ return pt    ;}
     public String   getImgPath(){ return img   ;}

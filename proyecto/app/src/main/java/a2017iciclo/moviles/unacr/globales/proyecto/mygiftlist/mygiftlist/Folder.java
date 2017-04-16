@@ -31,20 +31,6 @@ final public class Folder extends ArrayList<String> {
         this.v_sp_F_Editor = this.v_Sp_F_Preferences.edit();
         this.load();
     }
-    /*void load(){//el viejo
-        int size = this.v_Sp_F_Preferences.getInt(Folder.s_S_F_size,0);
-        if(size == 0){
-            //si el shared no tiene nada, lo agrega y a la vez actualiza el shared
-            this.add("My Gift List");
-            //pero porque? :/ de que sirve tener una carpeta si estara vacio
-        }else{
-            //va de indice en indece tomando cada folder
-            for(int i = 0;i < size; i++){
-                String folder = this.v_Sp_F_Preferences.getString(Folder.s_S_F_index+i,"ERROR!");
-                super.add(folder);
-            }
-        }
-    }*/
     void load(){
         for(int i = 0;i <v_Sp_F_Preferences.getAll().size(); i++){
             String folder="";

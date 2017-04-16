@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist">
+    <!--Permisos para usar la cámara y almacenamiento -->
+
+    <uses-feature android:name="android.permission.camera2"></uses-feature>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:allowBackup="true"

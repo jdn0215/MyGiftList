@@ -34,7 +34,7 @@ final public class Folder extends ArrayList<String> {
     void load(){
         for(int i = 0;i <v_Sp_F_Preferences.getAll().size(); i++){
             String folder="";
-            folder=this.v_Sp_F_Preferences.getString(""+i,"no se encontró");
+            folder=this.v_Sp_F_Preferences.getString(""+i,"My Gift List");
             super.add(folder);
         }
     }

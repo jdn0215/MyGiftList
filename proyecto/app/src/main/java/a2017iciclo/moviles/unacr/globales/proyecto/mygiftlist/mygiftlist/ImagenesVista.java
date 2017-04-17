@@ -1,5 +1,6 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -45,7 +46,9 @@ public class ImagenesVista extends AppCompatActivity {
     }
 
     void cargarGifts(){
-        this.gifts = new Gifts((TableLayout) super.findViewById(R.id.include),super.getApplicationContext(),3);
+        TableLayout tl = (TableLayout) super.findViewById(R.id.wrapperTable);
+        Context ct = super.getApplicationContext();
+        this.gifts = new Gifts(tl,ct,3);
 
     }
 

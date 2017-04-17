@@ -42,17 +42,6 @@
             android:layout_height="match_parent" />
     </TableLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eventos"
-        android:textSize="20sp"
-        android:layout_above="@+id/carpetas"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="16dp" />
-
     <Button
         android:id="@+id/btn_agregar"
         android:layout_width="wrap_content"

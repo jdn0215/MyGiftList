@@ -15,9 +15,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
+import android.graphics.Matrix;
 import java.io.File;
 import java.util.Date;
+
+
 
 public class CreateGift extends AppCompatActivity {
     String current;
@@ -51,11 +53,11 @@ public class CreateGift extends AppCompatActivity {
         this.setBarra(current);
         this.initAttributes();
         this.initEvents();
-        if(!isDiviceSupportCamara()){
+        /*if(!isDiviceSupportCamara()){
             Toast.makeText(getApplicationContext(),
                     "Lo Setimos, dispositivo no posee camara ",
                     Toast.LENGTH_LONG).show();
-        }
+        }*/
         MiImageView = (ImageView) findViewById(R.id.imagenPrevia);
         super.findViewById(R.id.camara).setVisibility(View.VISIBLE);
     }
@@ -82,11 +84,32 @@ public class CreateGift extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * APORTE DE NAZA
+     *
+     */
+
+    /**
+     *
+     *
+     *
+     *
+     *
+     *
+     * */
+
     void toCamara(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
         startActivityForResult(intent,CAMERA_CAPTURE_IMAGE);
+    }
+
+    public Bitmap rotateImage(Bitmap bitmap, int rotation) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(rotation);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
     public Uri getOutputMediaFileUri(int tipo){
@@ -96,7 +119,7 @@ public class CreateGift extends AppCompatActivity {
     private static File getOutputMediaFile(int tipo){
         File directorio = new File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                    IMAGE_DIRECTORY_NAME);
+                IMAGE_DIRECTORY_NAME);
         if(!directorio.exists()){
             if(!directorio.mkdir()){
                 Log.d(IMAGE_DIRECTORY_NAME,"Fallo la creacion"+
@@ -126,12 +149,12 @@ public class CreateGift extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "EL usuario Cancelo la captura", Toast.LENGTH_SHORT)
                         .show();
-                        CreateGift.path="";
+                CreateGift.path="";
             }else{
                 Toast.makeText(getApplicationContext(),
                         "Lo sentimos, Fallo la captura", Toast.LENGTH_SHORT)
                         .show();
-                    CreateGift.path="";
+                CreateGift.path="";
             }
         }
     }

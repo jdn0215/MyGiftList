@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist">
-    <!--Permisos para usar la cámara y almacenamiento -->
 
-    <uses-feature android:name="android.permission.camera2"></uses-feature>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!-- Permisos para usar la cámara y almacenamiento -->
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +35,24 @@
         <activity
             android:name=".CreateGift"
             android:label="@string/title_activity_create_gift"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+        <provider
+            android:name=".Utilities.GiftsContentProvider"
+            android:authorities="a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.Utilities.GiftsContentProvider"
+            android:exported="true"
+            android:multiprocess="true" />
+
+        <activity android:name=".integrantes"></activity>
     </application>
 
 </manifest>

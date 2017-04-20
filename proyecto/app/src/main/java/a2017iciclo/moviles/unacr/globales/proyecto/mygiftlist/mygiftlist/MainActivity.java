@@ -11,9 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TableLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -51,6 +49,28 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View arg0) {
                 DemeTexto(findViewById(R.id.btn_agregar));
+            }
+
+        });
+
+
+
+
+        Button integrantes = (Button) findViewById(R.id.btnintegrantes);
+
+
+
+        integrantes.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+
+            public void onClick(View arg0) {
+
+                Intent intento = new Intent(getApplicationContext(), integrantes.class);
+                startActivity(intento);
+
+
+
             }
 
         });

@@ -45,6 +45,9 @@ public class ImagenesVista extends AppCompatActivity {
         this.cargarGifts();
     }
 
+
+
+
     void cargarGifts(){
         TableLayout tl = (TableLayout) super.findViewById(R.id.wrapperTable);
         Context ct = super.getApplicationContext();

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 final public class Folder extends ArrayList<String> {
 
     static String s_S_F_preferenceName="mgl_folders";
-    static String s_S_F_size=Folder.s_S_F_preferenceName+"_size";
     static String s_S_F_index = Folder.s_S_F_preferenceName+"_";
 
     SharedPreferences v_Sp_F_Preferences;

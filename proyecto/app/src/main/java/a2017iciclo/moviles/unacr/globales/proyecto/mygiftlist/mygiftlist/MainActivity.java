@@ -10,12 +10,14 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -28,7 +30,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Folder v_F_M_folders;
-    TableCreator v_TC_M_creator;
     ListView v_LV_M_table;
 
     String seleccionado;
@@ -52,35 +53,39 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onClick(View arg0) {
-                DemeTexto(findViewById(R.id.btn_agregar));
+                CargarTexto(findViewById(R.id.btn_agregar));
             }
 
         });
-
-
-
-
         Button integrantes = (Button) findViewById(R.id.btnintegrantes);
-
-
-
         integrantes.setOnClickListener(new View.OnClickListener(){
 
             @Override
 
             public void onClick(View arg0) {
-
                 Intent intento = new Intent(getApplicationContext(), integrantes.class);
                 startActivity(intento);
-
-
-
             }
 
         });
 
+
     }
-    public void DemeTexto(View view){
+
+    public void DandoClickALosItems() {
+        ListView list = (ListView) findViewById(R.id.listview);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> paret, View viewClicked,
+                                    int position, long id)
+            { TextView textView = (TextView) viewClicked;
+                String message = "Presidente # " + (1+position) + ", corresponde a: " + textView.getText().toString();
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void CargarTexto(View view){
         // Uso:
         texto =  new EditText(view.getContext());
         AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
@@ -117,13 +122,13 @@ public class MainActivity extends AppCompatActivity {
     void initAttributes(){
         this.v_F_M_folders = new Folder(super.getApplicationContext());
         this.v_LV_M_table  = (ListView) findViewById(R.id.listview);
-        this.v_TC_M_creator=new TableCreator(this.v_LV_M_table,super.getApplicationContext());
     }
     void initTable(){
         for(int i=0;i<v_F_M_folders.size();i++){
             agregarRow(v_F_M_folders.get(i));
         }
     }
+    /*
     void addEvent(Component c){
         final String name = c.getTitle();
         c.get().setOnClickListener(new View.OnClickListener(){
@@ -136,19 +141,13 @@ public class MainActivity extends AppCompatActivity {
         });
         //registerForContextMenu(c.get());
     }
-
+    */
     public void Mensaje(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 
 
     private void agregarRow(String nombre){//solo parte visual
-        /*Component comp=new Component(super.getApplicationContext(),R.drawable.carpeta,nombre);
-        if(colorFlag)
-            comp.get().setBackgroundColor(Color.parseColor(color1));
-        else comp.get().setBackgroundColor(Color.parseColor(color2));
-        colorFlag = !colorFlag;
-        addEvent(comp);
-        this.v_TC_M_creator.addComponent(comp);*/
+
         addLinea();
     }
 
@@ -161,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
         milistview.setAdapter(adaptador);
 
         v_LV_M_table.setAdapter(adaptador);
-
-
     }
+
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {

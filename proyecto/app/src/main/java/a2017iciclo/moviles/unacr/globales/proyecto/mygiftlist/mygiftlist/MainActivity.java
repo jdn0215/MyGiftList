@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Folder v_F_M_folders;
     TableCreator v_TC_M_creator;
-    TableLayout v_TL_M_table;
+    LinearLayout v_LL_M_table;
 
     String seleccionado;
 
@@ -112,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
     }
     void initAttributes(){
         this.v_F_M_folders = new Folder(super.getApplicationContext());
-        this.v_TL_M_table  = (TableLayout) findViewById(R.id.carpetas);
-        this.v_TC_M_creator=new TableCreator(this.v_TL_M_table,super.getApplicationContext(),1);
+        this.v_LL_M_table  = (LinearLayout) findViewById(R.id.layoutlinea);
+        this.v_TC_M_creator=new TableCreator(this.v_LL_M_table,super.getApplicationContext(),1);
     }
     void initTable(){
         for(int i=0;i<v_F_M_folders.size();i++){
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 
 
-    private void agregarRow(String nombre){
+    private void agregarRow(String nombre){//solo parte visual
         Component comp=new Component(super.getApplicationContext(),R.drawable.carpeta,nombre);
         if(colorFlag)
             comp.get().setBackgroundColor(Color.parseColor(color1));

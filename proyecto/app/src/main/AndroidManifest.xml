@@ -31,14 +31,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ImagenesVista"
             android:label="@string/title_activity_imagenes_vista"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+        />
+
         <activity
             android:name=".CreateGift"
             android:label="@string/title_activity_create_gift"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+        />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -49,6 +53,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
         <provider
             android:name=".Utilities.GiftsContentProvider"
             android:authorities="a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.Utilities.GiftsContentProvider"

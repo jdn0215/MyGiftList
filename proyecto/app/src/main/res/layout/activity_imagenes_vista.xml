@@ -32,9 +32,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_imagenes_vista"
-        android:id="@+id/include" />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -44,5 +41,9 @@
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_imagenes_vista" />
 
 </android.support.design.widget.CoordinatorLayout>

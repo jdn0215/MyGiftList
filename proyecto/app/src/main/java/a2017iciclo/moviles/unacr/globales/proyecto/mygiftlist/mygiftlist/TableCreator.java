@@ -1,6 +1,7 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
 import android.content.Context;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -10,14 +11,15 @@ import android.widget.TextView;
  */
 
 public class TableCreator {
-    TableLayout table;
+    LinearLayout table;
     int maxSize;
     Context context;
-    public TableCreator(TableLayout tl,Context c,int ms){
+    public TableCreator(LinearLayout tl,Context c,int ms){
         this.table = tl;
         this.context = c;
         this.maxSize = ms;
     }
+    /*
     TableRow getCurrentRow(){
         TableRow row = (TableRow)table.getChildAt( table.getChildCount() - 1);
         int  k = row.getChildCount();
@@ -28,10 +30,16 @@ public class TableCreator {
         }
         return row;
     }
+
+
     public void addComponent(Component comp){
         if(comp!=null){
             this.getCurrentRow().addView(comp.get());
         }
     }
+    */
 
+    public void addComponent(Component c){
+        table.addView(c.get());
+    }
 }

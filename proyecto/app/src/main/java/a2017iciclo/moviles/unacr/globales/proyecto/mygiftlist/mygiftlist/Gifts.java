@@ -1,6 +1,7 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
 import android.content.Context;
+import android.widget.ListView;
 import android.widget.TableLayout;
 
 import java.util.ArrayList;
@@ -12,8 +13,8 @@ import java.util.ArrayList;
 public class Gifts extends TableCreator{
 
     ArrayList<Gift>gifts;
-    public  Gifts(TableLayout tl,Context context,int maxSize){
-        super(tl,context,maxSize);
+    public  Gifts(ListView tl, Context context, int maxSize){
+        super(tl,context);
         this.gifts = new ArrayList<>();
     }
     @Override

@@ -9,9 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     Folder v_F_M_folders;
     TableCreator v_TC_M_creator;
-    LinearLayout v_LL_M_table;
+    ListView v_LV_M_table;
 
     String seleccionado;
 
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         // Uso:
         texto =  new EditText(view.getContext());
         AlertDialog.Builder builder1 = new AlertDialog.Builder(view.getContext());
-        builder1.setMessage("Digite el nuevo nombre para el evento:");
+        builder1.setMessage("Digite el nuevo nombre para la categoría:");
         texto.setText("nombre");
         texto.selectAll();
         builder1.setView(texto);
@@ -98,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         builder1.setNegativeButton("Cancelar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Mensaje("Evento no agregado");
+                        Mensaje("Categoría no agregada");
                     }
                 });
 
@@ -113,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
     }
     void initAttributes(){
         this.v_F_M_folders = new Folder(super.getApplicationContext());
-        this.v_LL_M_table  = (LinearLayout) findViewById(R.id.layoutlinea);
-        this.v_TC_M_creator=new TableCreator(this.v_LL_M_table,super.getApplicationContext(),1);
+        this.v_LV_M_table  = (ListView) findViewById(R.id.listview);
+        this.v_TC_M_creator=new TableCreator(this.v_LV_M_table,super.getApplicationContext());
     }
     void initTable(){
         for(int i=0;i<v_F_M_folders.size();i++){
@@ -131,17 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intento);
             }
         });
-
-        c.get().setOnLongClickListener(new View.OnLongClickListener(){
-            @Override
-            public boolean onLongClick(View v){
-
-                //>:(
-                return true;
-            }
-
-        });
-        registerForContextMenu(c.get());
+        //registerForContextMenu(c.get());
     }
 
     public void Mensaje(String msg){
@@ -149,13 +142,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void agregarRow(String nombre){//solo parte visual
-        Component comp=new Component(super.getApplicationContext(),R.drawable.carpeta,nombre);
+        /*Component comp=new Component(super.getApplicationContext(),R.drawable.carpeta,nombre);
         if(colorFlag)
             comp.get().setBackgroundColor(Color.parseColor(color1));
         else comp.get().setBackgroundColor(Color.parseColor(color2));
         colorFlag = !colorFlag;
         addEvent(comp);
-        this.v_TC_M_creator.addComponent(comp);
+        this.v_TC_M_creator.addComponent(comp);*/
+        addLinea();
+    }
+
+    public void addLinea(){
+        String [] temp={};
+        String [] nombres=v_F_M_folders.toArray(temp);
+        ArrayAdapter<String> adaptador =new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, nombres);
+        ListView milistview = (ListView) findViewById(R.id.listview);
+        milistview.setAdapter(adaptador);
+
+        v_LV_M_table.setAdapter(adaptador);
+
 
     }
 

@@ -7,7 +7,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TableLayout;
+
+import java.util.List;
 
 /**
  * falta generar las imagenes con la carpeta correspondiente
@@ -49,7 +52,7 @@ public class ImagenesVista extends AppCompatActivity {
 
 
     void cargarGifts(){
-        TableLayout tl = (TableLayout) super.findViewById(R.id.wrapperTable);
+        ListView tl = (ListView) super.findViewById(R.id.listview);
         Context ct = super.getApplicationContext();
         this.gifts = new Gifts(tl,ct,3);
 

@@ -15,12 +15,12 @@
         android:id="@+id/btn_agregar"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
-        android:text="Nuevo evento"
-        android:textColor="#FFF"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="Nueva categoría"
+        android:textColor="#FFF" />
 
     <Button
         android:id="@+id/btnintegrantes"
@@ -33,15 +33,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <LinearLayout
-        android:id="@+id/layoutlinea"
+    <ListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@+id/btnintegrantes"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/btn_agregar"
+        android:layout_above="@+id/btn_agregar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

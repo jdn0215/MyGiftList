@@ -42,8 +42,10 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_imagenes_vista" />
+    <ListView
+        android:id="@+id/listViewGifts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="180dp" />
 
 </android.support.design.widget.CoordinatorLayout>

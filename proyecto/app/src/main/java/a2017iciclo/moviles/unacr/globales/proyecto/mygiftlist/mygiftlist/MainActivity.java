@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import static android.R.attr.name;
 
@@ -70,7 +72,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
         DandoClickALosItems();
+
+        ListView categorias=(ListView)findViewById(R.id.listview);
+        registerForContextMenu(categorias);
 
     }
 
@@ -78,8 +84,7 @@ public class MainActivity extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.listview);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked,
-                                    int position, long id)
+            public void onItemClick(AdapterView<?> parent, View viewClicked,int position, long id)
             { TextView textView = (TextView) viewClicked;
                 Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
                 intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,v_F_M_folders.get(position));
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         v_F_M_folders.add(texto.getText().toString());
-                        agregarRow(v_F_M_folders.get(v_F_M_folders.size()-1));
+                        agregarRow();
                     }
                 });
 
@@ -127,30 +132,16 @@ public class MainActivity extends AppCompatActivity {
         this.v_LV_M_table  = (ListView) findViewById(R.id.listview);
     }
     void initTable(){
-        for(int i=0;i<v_F_M_folders.size();i++){
-            agregarRow(v_F_M_folders.get(i));
-        }
+        agregarRow();
     }
-    /*Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
-                intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,name);
-                startActivity(intento);
-    void addEvent(Component c){
-        final String name = c.getTitle();
-        c.get().setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
 
-            }
-        });
-        //registerForContextMenu(c.get());
-    }
-    */
+
+
     public void Mensaje(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 
 
-    private void agregarRow(String nombre){//solo parte visual
-
+    private void agregarRow(){//solo parte visual
         addLinea();
     }
 
@@ -169,21 +160,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        Mensaje("");
+
         super.onCreateContextMenu(menu, v, menuInfo);
-            menu.add(0, 1, 0, "Eliminar");
-            menu.add(0, 2, 0, "Cancelar");
+            menu.add(0,1,0,"Eliminar");
+            menu.add(0,2,0,"Mostrar detalles");
+            menu.add(0,3,0,"Marcar como favorito");
 
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        int opcionseleccionada = item.getItemId();
         switch (item.getItemId()) {
             case 1: {
-            v_F_M_folders.remover(seleccionado);
-            }; break;
-            case 2: Mensaje("Cancelado"); break;
+                //v_F_M_folders.remover(""+opcionseleccionada);
+                recreate();
+                break;
+
+            }
+            case 2: Mensaje("Detalles pros de esta ");
+            break;
+            case 3: Mensaje("Marcado :D y será bien pichuo despues XD");
+            break;
         }
         //this.v_F_M_folders.remover("la carpeta");
         return true;

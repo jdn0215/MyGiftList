@@ -50,13 +50,8 @@ final public class Folder extends ArrayList<String> {
         return this.v_sp_F_Editor.commit();
     }
 
-    public boolean remover(String key){
-        int index = super.indexOf(key);
-        if(index == -1)
-            return false;
-        this.v_sp_F_Editor.remove(Folder.s_S_F_index+index);
-        super.remove(index);
-        return true;
+    public void remover(String key){
+       super.remove(key);
     }
     public void Mensaje(String msg){
         Toast.makeText(v_c_F_Contexto, msg, Toast.LENGTH_SHORT).show();

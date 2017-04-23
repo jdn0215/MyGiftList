@@ -10,18 +10,11 @@ import java.util.ArrayList;
  * Created by jdani on 3/4/2017.
  */
 
-public class Gifts extends TableCreator{
+public class Gifts{
 
-    ArrayList<Gift>gifts;
-    public  Gifts(ListView tl, Context context, int maxSize){
-        super(tl,context);
+    ArrayList<Gift> gifts;
+    public  Gifts(){
         this.gifts = new ArrayList<>();
     }
-    @Override
-    public void addComponent(Component comp){
-        if(comp instanceof Gift){
-            this.gifts.add((Gift)comp);
-            super.addComponent(comp);
-        }
-    }
+
 }

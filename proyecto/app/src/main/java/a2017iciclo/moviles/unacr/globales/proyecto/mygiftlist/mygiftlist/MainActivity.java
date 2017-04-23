@@ -20,6 +20,8 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.attr.name;
+
 /**
  * agregar un botón que sirva para crear carpertas
  * menu contextual para eliminar o renombrar carpetas
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
+        DandoClickALosItems();
 
     }
 
@@ -76,11 +78,12 @@ public class MainActivity extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.listview);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> paret, View viewClicked,
+            public void onItemClick(AdapterView<?> parent, View viewClicked,
                                     int position, long id)
             { TextView textView = (TextView) viewClicked;
-                String message = "Presidente # " + (1+position) + ", corresponde a: " + textView.getText().toString();
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
+                intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,v_F_M_folders.get(position));
+                startActivity(intento);
             }
         });
     }
@@ -128,15 +131,15 @@ public class MainActivity extends AppCompatActivity {
             agregarRow(v_F_M_folders.get(i));
         }
     }
-    /*
+    /*Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
+                intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,name);
+                startActivity(intento);
     void addEvent(Component c){
         final String name = c.getTitle();
         c.get().setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
-                intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,name);
-                startActivity(intento);
+
             }
         });
         //registerForContextMenu(c.get());

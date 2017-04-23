@@ -54,7 +54,7 @@ public class ImagenesVista extends AppCompatActivity {
     void cargarGifts(){
         ListView tl = (ListView) super.findViewById(R.id.listview);
         Context ct = super.getApplicationContext();
-        this.gifts = new Gifts(tl,ct,3);
+        this.gifts = new Gifts();
 
     }
 

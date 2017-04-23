@@ -210,7 +210,7 @@ public class CreateGift extends AppCompatActivity {
         if(!result.equals("ok")){
             this.mensaje(result);
         }
-        else save(create());
+        else save(create());//aqui es donde se guarda
     }
 
 
@@ -220,8 +220,8 @@ public class CreateGift extends AppCompatActivity {
         if(_new!=null){
             /**
              *
-             * naza
-             *
+             * naza,
+             * Luis:ohh shet :VV falta todo el codigo
              *
              * */
         }
@@ -241,23 +241,20 @@ public class CreateGift extends AppCompatActivity {
                 return "Ingrese un precio";
             Integer.parseInt(precio.getText().toString());
         }catch(Exception e){
-            return "precio invalido";
+            return "Precio invalido";
         }
         if(CreateGift.path.equals(""))
-            return "Tome una fotografía";
+            return "Tome una fotografía por favor";
         return "ok";
     }
 
     Gift create(){
         return new Gift(
-                super.getApplicationContext(),
-                0,0,
                 CreateGift.path,
                 descp.getText().toString(),
                 name.getText().toString(),
-                Integer.parseInt(precio.getText().toString()),
-                current
-        );
+                current,
+                Integer.parseInt(precio.getText().toString()));
     }
 
 

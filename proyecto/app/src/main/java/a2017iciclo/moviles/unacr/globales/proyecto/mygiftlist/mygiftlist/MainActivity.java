@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
     String color2 = "#F2E0F7";
     int v_I_MA_paraeliminar=-1;
     static EditText texto;
-    private GiftDBDao gift_dao;//->data access object
-    private GiftDB gift_temporal;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,21 +88,9 @@ public class MainActivity extends AppCompatActivity {
         ListView categorias=(ListView)findViewById(R.id.listview);
         registerForContextMenu(categorias);
 
-        //probando la base de datos
-        gift_dao=setupDB();
-        
+
     }
-    //iniciar base de datos
-    public GiftDBDao setupDB(){
-        DaoMaster.DevOpenHelper masterHelper = new DaoMaster.DevOpenHelper(this, "GIFTS_DB", null); //create database db file if not exist
-        SQLiteDatabase db = masterHelper.getWritableDatabase();  //get the created database db file
-        DaoMaster master = new DaoMaster(db);//create masterDao
-        DaoSession masterSession=master.newSession(); //Creates Session session
-        return masterSession.getGiftDBDao();
-    }
-    public void saveToSQL(GiftDB gift_object) {
-        gift_dao.insert(gift_object);
-    }
+
 
 
 
@@ -117,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intento);
             }
         });
+
     }
+
 
     public void CargarTexto(View view){
         // Uso:

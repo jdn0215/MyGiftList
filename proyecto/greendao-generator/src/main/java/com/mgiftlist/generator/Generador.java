@@ -10,9 +10,7 @@ import de.greenrobot.daogenerator.Schema;
 
 public class Generador {
 
-    private static final String dir="a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db";
-    private static final String dir2="a2017iciclo\\moviles\\unacr\\globales\\proyecto\\mygiftlist\\mygiftlist";
-    Schema schema = new Schema(1,dir);
+    private static final String dir="a2017iciclo\\moviles\\unacr\\globales\\proyecto\\mygiftlist\\mygiftlist";
 
     private static final String PROJECT_DIR = System.getProperty("user.dir");
 
@@ -23,7 +21,7 @@ public class Generador {
         agregarTablaGifs(schema);
 
         try {
-            new DaoGenerator().generateAll(schema, PROJECT_DIR+"\\app\\src\\main\\java\\"+dir2+"\\Greendao\\");
+            new DaoGenerator().generateAll(schema, PROJECT_DIR+"\\app\\src\\main\\java\\"+dir+"\\Greendao\\");
         } catch (Exception e) {
             e.printStackTrace();
         }

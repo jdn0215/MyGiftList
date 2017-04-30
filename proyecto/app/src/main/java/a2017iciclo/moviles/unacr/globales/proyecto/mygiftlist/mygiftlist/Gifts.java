@@ -10,11 +10,12 @@ import java.util.ArrayList;
  * Created by jdani on 3/4/2017.
  */
 
-public class Gifts{
+public class Gifts {
 
     ArrayList<Gift> gifts;
-    public  Gifts(){
-        this.gifts = new ArrayList<>();
-    }
 
+    public Gifts() {
+        this.gifts = new ArrayList<Gift>();
+    }
 }
+

@@ -3,6 +3,7 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,11 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoMaster;
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoSession;
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDBDao;
 
 import static android.R.attr.name;
 
@@ -44,11 +50,15 @@ public class MainActivity extends AppCompatActivity {
     String color2 = "#F2E0F7";
     int v_I_MA_paraeliminar=-1;
     static EditText texto;
+    private GiftDBDao gift_dao;//->data access object
+    private GiftDB gift_temporal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.init();
+
 
         Button agregar=(Button)findViewById(R.id.btn_agregar);
 
@@ -78,7 +88,23 @@ public class MainActivity extends AppCompatActivity {
         ListView categorias=(ListView)findViewById(R.id.listview);
         registerForContextMenu(categorias);
 
+        //probando la base de datos
+        gift_dao=setupDB();
+        
     }
+    //iniciar base de datos
+    public GiftDBDao setupDB(){
+        DaoMaster.DevOpenHelper masterHelper = new DaoMaster.DevOpenHelper(this, "GIFTS_DB", null); //create database db file if not exist
+        SQLiteDatabase db = masterHelper.getWritableDatabase();  //get the created database db file
+        DaoMaster master = new DaoMaster(db);//create masterDao
+        DaoSession masterSession=master.newSession(); //Creates Session session
+        return masterSession.getGiftDBDao();
+    }
+    public void saveToSQL(GiftDB gift_object) {
+        gift_dao.insert(gift_object);
+    }
+
+
 
     public void DandoClickALosItems() {
         ListView list = (ListView) findViewById(R.id.listview);

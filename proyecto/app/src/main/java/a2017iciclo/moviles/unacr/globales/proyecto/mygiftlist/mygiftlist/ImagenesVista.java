@@ -30,7 +30,8 @@ import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.Gift
 public class ImagenesVista extends AppCompatActivity {
     static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";
     String current;
-    Gifts gifts; //para gestionar la tabla con las imagenes y el titulo
+    Gifts gifts;
+    BaseDatos db=new BaseDatos();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

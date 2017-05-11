@@ -34,22 +34,24 @@ public class BaseDatos {
         gift_dao.insert(gift_object);
     }
 
-    public void BuscarPorFolder(String folder){
+    public List<GiftDB> BuscarPorFolder(String folder){
         List<GiftDB> lista= gift_dao.loadAll();
         List<GiftDB> filtrados=new ArrayList<GiftDB>();
         for(GiftDB gf:lista){
             if(gf.getFolder()==folder)
                 filtrados.add(gf);
         }
+        return filtrados;
     }
 
-    public void BuscarPorNombre(String nombre){
+    public List<GiftDB> BuscarPorNombre(String nombre){
         List<GiftDB> lista= gift_dao.loadAll();
         List<GiftDB> filtrados=new ArrayList<GiftDB>();
         for(GiftDB gf:lista){
             if(gf.getNombre().startsWith(nombre))
                 filtrados.add(gf);
         }
+        return filtrados;
     }
 
 }

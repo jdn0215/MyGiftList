@@ -27,6 +27,7 @@ public class CreateGift extends AppCompatActivity {
     EditText name;
     EditText descp;
     EditText precio;
+    GPS gps;
     static String idName = "idCamaraNewGift";
     static String path="";
     private static final int CAMERA_CAPTURE_IMAGE = 10; //Tam modificable
@@ -45,7 +46,7 @@ public class CreateGift extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-
+        gps = new GPS(this);
     }
     void init(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);

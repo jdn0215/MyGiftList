@@ -22,7 +22,7 @@ public class ImagenesVista extends AppCompatActivity {
     static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";
     String current;
     Gifts gifts;
-    //BaseDatos db=new BaseDatos();
+    BaseDatos db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class ImagenesVista extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        db=new BaseDatos(this);
     }
     void init(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);

@@ -19,7 +19,8 @@ public class BaseDatos {
     Context contexto;
     GiftDBDao gift_dao;
 
-    public BaseDatos(){
+    public BaseDatos(Context context){
+        contexto=context;
         gift_dao=setupDB();
     }
 

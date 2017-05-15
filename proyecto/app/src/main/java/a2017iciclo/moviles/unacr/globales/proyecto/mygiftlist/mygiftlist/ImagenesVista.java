@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
 
 /**
  * falta generar las imagenes con la carpeta correspondiente
@@ -22,7 +25,7 @@ public class ImagenesVista extends AppCompatActivity {
     static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";
     String current;
     Gifts gifts;
-    BaseDatos db;
+    public static BaseDatos db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,10 @@ public class ImagenesVista extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        db=new BaseDatos(this);
+        db=new BaseDatos(this.getApplicationContext());
+        //Mensaje(""+db.sizeDB());
+        //aqui voy
+
     }
     void init(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
@@ -53,7 +59,7 @@ public class ImagenesVista extends AppCompatActivity {
 
     void cargarGifts(){
         ListView tl = (ListView) super.findViewById(R.id.listview);
-        Context ct = super.getApplicationContext();
+        //Context ct = super.getApplicationContext();
         this.gifts = new Gifts();
 
     }
@@ -62,5 +68,6 @@ public class ImagenesVista extends AppCompatActivity {
         getSupportActionBar().setTitle(msg);
     }
 
-
+    public void Mensaje(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 }

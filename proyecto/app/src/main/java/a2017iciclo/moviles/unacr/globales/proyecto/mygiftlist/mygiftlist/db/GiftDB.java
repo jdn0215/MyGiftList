@@ -4,6 +4,9 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db;
 
 // KEEP INCLUDES - put your custom includes here
 // KEEP INCLUDES END
+
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.Gift;
+
 /**
  * Entity mapped to table "GIFT_DB".
  */
@@ -103,7 +106,10 @@ public class GiftDB {
         this.lat = lat;
     }
 
+
     // KEEP METHODS - put your custom methods here
     // KEEP METHODS END
-
+    public Gift toGiftNormal(){
+        return new Gift(img,descp,nombre,folder,precio,lng,lat);
+    }
 }

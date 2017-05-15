@@ -1,5 +1,7 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
+import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
+
 /**
  * Created by jdani on 3/4/2017.
  */
@@ -62,5 +64,9 @@ public class Gift{
 
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public GiftDB toGiftDB(){
+        return new GiftDB(null,img,descp,nombre,folder,precio,lng,lat);
     }
 }

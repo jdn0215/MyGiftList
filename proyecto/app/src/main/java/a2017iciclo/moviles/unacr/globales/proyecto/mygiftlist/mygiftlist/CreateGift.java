@@ -39,6 +39,7 @@ public class CreateGift extends AppCompatActivity {
     private ImageView MiImageView;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,20 +86,7 @@ public class CreateGift extends AppCompatActivity {
         });
     }
 
-    /**
-     *
-     * APORTE DE NAZA
-     *
-     */
 
-    /**
-     *
-     *
-     *
-     *
-     *
-     *
-     * */
 
     void toCamara(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -206,26 +194,21 @@ public class CreateGift extends AppCompatActivity {
         return (CreateGift.staticCurrent.replace(" ","")) + Long.toString(new Date().getTime());
     }
 
-    /*
+
     void save(){
         String result = this.validar();
         if(!result.equals("ok")){
             this.mensaje(result);
         }
         else save(create());//aqui es donde se guarda
-    }*/
+    }
 
 
 
 
     void save(Gift _new){
         if(_new!=null){
-            /**
-             *
-             * naza,
-             * Luis:ohh shet :VV falta todo el codigo
-             *
-             * */
+            ImagenesVista.db.saveToSQL(_new.toGiftDB());
         }
     }
 
@@ -250,15 +233,17 @@ public class CreateGift extends AppCompatActivity {
         return "ok";
     }
 
-    /*
+
     Gift create(){
         return new Gift(
                 CreateGift.path,
                 descp.getText().toString(),
                 name.getText().toString(),
                 current,
-                Integer.parseInt(precio.getText().toString()));
-    }*/
+                Integer.parseInt(precio.getText().toString()),
+                gps.getLocation().getLongitude(),
+                gps.getLocation().getLatitude());
+    }
 
 
     void setBarra(String msg){

@@ -35,24 +35,27 @@ public class BaseDatos {
         gift_dao.insert(gift_object);
     }
 
-    public List<GiftDB> BuscarPorFolder(String folder){
+    public List<Gift> BuscarPorFolder(String folder){
         List<GiftDB> lista= gift_dao.loadAll();
-        List<GiftDB> filtrados=new ArrayList<GiftDB>();
+        List<Gift> filtrados=new ArrayList<Gift>();
         for(GiftDB gf:lista){
             if(gf.getFolder()==folder)
-                filtrados.add(gf);
+                filtrados.add(gf.toGiftNormal());
         }
         return filtrados;
     }
 
-    public List<GiftDB> BuscarPorNombre(String nombre){
+    public List<Gift> BuscarPorNombre(String nombre){
         List<GiftDB> lista= gift_dao.loadAll();
-        List<GiftDB> filtrados=new ArrayList<GiftDB>();
+        List<Gift> filtrados=new ArrayList<Gift>();
         for(GiftDB gf:lista){
             if(gf.getNombre().startsWith(nombre))
-                filtrados.add(gf);
+                filtrados.add(gf.toGiftNormal());
         }
         return filtrados;
     }
 
+    public int sizeDB(){
+        return gift_dao.loadAll().size();
+    }
 }

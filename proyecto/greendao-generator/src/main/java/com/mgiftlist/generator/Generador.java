@@ -35,6 +35,8 @@ public class Generador {
         gift.addStringProperty("nombre");
         gift.addStringProperty("folder");
         gift.addIntProperty("precio");
+        gift.addDoubleProperty("lng");
+        gift.addDoubleProperty("lat");
         return gift;
     }
 }

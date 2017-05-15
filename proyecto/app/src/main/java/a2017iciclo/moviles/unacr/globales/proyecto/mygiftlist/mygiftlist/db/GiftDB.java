@@ -15,6 +15,8 @@ public class GiftDB {
     private String nombre;
     private String folder;
     private Integer precio;
+    private Double lng;
+    private Double lat;
 
     // KEEP FIELDS - put your custom fields here
     // KEEP FIELDS END
@@ -26,13 +28,15 @@ public class GiftDB {
         this.id = id;
     }
 
-    public GiftDB(Long id, String img, String descp, String nombre, String folder, Integer precio) {
+    public GiftDB(Long id, String img, String descp, String nombre, String folder, Integer precio, Double lng, Double lat) {
         this.id = id;
         this.img = img;
         this.descp = descp;
         this.nombre = nombre;
         this.folder = folder;
         this.precio = precio;
+        this.lng = lng;
+        this.lat = lat;
     }
 
     public Long getId() {
@@ -81,6 +85,22 @@ public class GiftDB {
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
     // KEEP METHODS - put your custom methods here

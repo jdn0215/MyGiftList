@@ -79,7 +79,7 @@ public class CreateGift extends AppCompatActivity {
             public void onClick(View v){
                 switch (v.getId()){
                     case R.id.camara: toCamara(); break;
-                    case R.id.save  : save();     break;
+                    //case R.id.save  : save();     break;
                 }
             }
         });
@@ -206,13 +206,14 @@ public class CreateGift extends AppCompatActivity {
         return (CreateGift.staticCurrent.replace(" ","")) + Long.toString(new Date().getTime());
     }
 
+    /*
     void save(){
         String result = this.validar();
         if(!result.equals("ok")){
             this.mensaje(result);
         }
         else save(create());//aqui es donde se guarda
-    }
+    }*/
 
 
 
@@ -249,6 +250,7 @@ public class CreateGift extends AppCompatActivity {
         return "ok";
     }
 
+    /*
     Gift create(){
         return new Gift(
                 CreateGift.path,
@@ -256,7 +258,7 @@ public class CreateGift extends AppCompatActivity {
                 name.getText().toString(),
                 current,
                 Integer.parseInt(precio.getText().toString()));
-    }
+    }*/
 
 
     void setBarra(String msg){

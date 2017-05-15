@@ -29,6 +29,8 @@ public class GiftDBDao extends AbstractDao<GiftDB, Long> {
         public final static Property Nombre = new Property(3, String.class, "nombre", false, "NOMBRE");
         public final static Property Folder = new Property(4, String.class, "folder", false, "FOLDER");
         public final static Property Precio = new Property(5, Integer.class, "precio", false, "PRECIO");
+        public final static Property Lng = new Property(6, Double.class, "lng", false, "LNG");
+        public final static Property Lat = new Property(7, Double.class, "lat", false, "LAT");
     };
 
 
@@ -49,7 +51,9 @@ public class GiftDBDao extends AbstractDao<GiftDB, Long> {
                 "\"DESCP\" TEXT," + // 2: descp
                 "\"NOMBRE\" TEXT," + // 3: nombre
                 "\"FOLDER\" TEXT," + // 4: folder
-                "\"PRECIO\" INTEGER);"); // 5: precio
+                "\"PRECIO\" INTEGER," + // 5: precio
+                "\"LNG\" REAL," + // 6: lng
+                "\"LAT\" REAL);"); // 7: lat
     }
 
     /** Drops the underlying database table. */
@@ -92,6 +96,16 @@ public class GiftDBDao extends AbstractDao<GiftDB, Long> {
         if (precio != null) {
             stmt.bindLong(6, precio);
         }
+ 
+        Double lng = entity.getLng();
+        if (lng != null) {
+            stmt.bindDouble(7, lng);
+        }
+ 
+        Double lat = entity.getLat();
+        if (lat != null) {
+            stmt.bindDouble(8, lat);
+        }
     }
 
     /** @inheritdoc */
@@ -109,7 +123,9 @@ public class GiftDBDao extends AbstractDao<GiftDB, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // descp
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // nombre
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // folder
-            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5) // precio
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // precio
+            cursor.isNull(offset + 6) ? null : cursor.getDouble(offset + 6), // lng
+            cursor.isNull(offset + 7) ? null : cursor.getDouble(offset + 7) // lat
         );
         return entity;
     }
@@ -123,6 +139,8 @@ public class GiftDBDao extends AbstractDao<GiftDB, Long> {
         entity.setNombre(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setFolder(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setPrecio(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setLng(cursor.isNull(offset + 6) ? null : cursor.getDouble(offset + 6));
+        entity.setLat(cursor.isNull(offset + 7) ? null : cursor.getDouble(offset + 7));
      }
     
     /** @inheritdoc */

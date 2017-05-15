@@ -43,9 +43,8 @@ public class ImagenesVista extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        db=new BaseDatos(this.getApplicationContext());
-        //Mensaje(""+db.sizeDB());
-        //aqui voy
+        db=new BaseDatos();
+        Mensaje(""+db.sizeLista());
 
     }
     void init(){

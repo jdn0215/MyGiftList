@@ -75,7 +75,7 @@ public class GPS {
         alert.show();
     }
     public Location getLocation(){
-        return this.location;
+        return initLocation();
     }
 };
 

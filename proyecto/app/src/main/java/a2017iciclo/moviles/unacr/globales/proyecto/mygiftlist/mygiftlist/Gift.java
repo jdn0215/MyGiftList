@@ -1,5 +1,7 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
+import java.util.Date;
+
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
 
 /**
@@ -20,6 +22,19 @@ public class Gift{
         this.precio = precio;
         this.lng = lng;
         this.lat = lat;
+    }
+
+    public GiftDB DB(){
+        return new GiftDB(
+                new Date().getTime(),
+                this.img,
+                this.descp,
+                this.nombre,
+                this.folder,
+                this.precio,
+                this.lng,
+                this.lat
+        );
     }
 
     public double getLat() {

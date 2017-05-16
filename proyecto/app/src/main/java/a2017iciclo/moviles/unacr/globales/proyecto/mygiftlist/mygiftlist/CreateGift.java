@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -35,7 +36,7 @@ public class CreateGift extends AppCompatActivity {
     //Directorio
     private static final String IMAGE_DIRECTORY_NAME = "Hello_Camara";
     private Uri fileUri; //Para ubicar el archivo
-
+    BaseDatos db;
     private ImageView MiImageView;
 
 
@@ -48,6 +49,7 @@ public class CreateGift extends AppCompatActivity {
         setSupportActionBar(toolbar);
         init();
         gps = new GPS(this);
+        db = new BaseDatos();
     }
     void init(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
@@ -80,7 +82,7 @@ public class CreateGift extends AppCompatActivity {
             public void onClick(View v){
                 switch (v.getId()){
                     case R.id.camara: toCamara(); break;
-                    //case R.id.save  : save();     break;
+                    case R.id.save  : save();     break;
                 }
             }
         });
@@ -208,7 +210,7 @@ public class CreateGift extends AppCompatActivity {
 
     void save(Gift _new){
         if(_new!=null){
-            ImagenesVista.db.saveToSQL(_new.toGiftDB());
+            ImagenesVista.db.saveToSQL(_new.DB());
         }
     }
 
@@ -235,6 +237,11 @@ public class CreateGift extends AppCompatActivity {
 
 
     Gift create(){
+        Location loc = gps.getLocation();
+        if(loc==null){
+            mensaje("Hubo un problema al capturar la ubicación");
+            return null;
+        }
         return new Gift(
                 CreateGift.path,
                 descp.getText().toString(),

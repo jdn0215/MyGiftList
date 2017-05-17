@@ -4,25 +4,25 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.graphics.Matrix;
+
 import java.io.File;
 import java.util.Date;
 
 
 
-public class CreateGift extends AppCompatActivity {
+public class CreateGift extends BaseDatos {
     String current;
     static String staticCurrent="";
     EditText name;
@@ -36,22 +36,20 @@ public class CreateGift extends AppCompatActivity {
     //Directorio
     private static final String IMAGE_DIRECTORY_NAME = "Hello_Camara";
     private Uri fileUri; //Para ubicar el archivo
-    BaseDatos db;
     private ImageView MiImageView;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_gift);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        init();
+        initCreate();
         gps = new GPS(this);
-        db = new BaseDatos();
     }
-    void init(){
+    void initCreate(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
         CreateGift.staticCurrent=current;
         this.setBarra(current);
@@ -210,7 +208,7 @@ public class CreateGift extends AppCompatActivity {
 
     void save(Gift _new){
         if(_new!=null){
-            ImagenesVista.db.saveToSQL(_new.DB());
+            super.saveToSQL(_new.DB());
         }
     }
 

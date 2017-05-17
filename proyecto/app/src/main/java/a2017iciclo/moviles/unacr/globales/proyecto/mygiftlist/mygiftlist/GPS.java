@@ -29,9 +29,6 @@ public class GPS {
     }
     final void init(){
         verificarLocation();
-        this.location = initLocation();
-        if(this.location == null)return;
-
     }
     final void verificarLocation(){
         locationManager = (LocationManager)this.activity.getSystemService(LOCATION_SERVICE);

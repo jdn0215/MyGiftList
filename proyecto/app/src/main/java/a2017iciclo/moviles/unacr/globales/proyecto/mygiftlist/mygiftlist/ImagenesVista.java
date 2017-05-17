@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 
 public class ImagenesVista extends BaseDatos {
-    static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";
+    static String s_S_IV_argumentoNombre = "ImagenesVistaFonderSelected";
     String current;
     Gifts gifts;
 
@@ -31,16 +31,16 @@ public class ImagenesVista extends BaseDatos {
         initVista();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                Intent i = new Intent(ImagenesVista.super.getApplicationContext(),CreateGift.class);
-                i.putExtra(ImagenesVista.s_S_IV_argumentoNombre,current);
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ImagenesVista.super.getApplicationContext(), CreateGift.class);
+                i.putExtra(ImagenesVista.s_S_IV_argumentoNombre, current);
                 startActivity(i);
             }
         });
-        Mensaje(""+super.sizeLista());
-
+        Mensaje("" + super.sizeLista());
     }
+
     void initVista(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
         this.setBarra(current);

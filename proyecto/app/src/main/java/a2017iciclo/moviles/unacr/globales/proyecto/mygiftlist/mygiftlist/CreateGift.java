@@ -1,15 +1,21 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -28,7 +34,7 @@ public class CreateGift extends BaseDatos {
     EditText name;
     EditText descp;
     EditText precio;
-    GPS gps;
+
     static String idName = "idCamaraNewGift";
     static String path="";
     private static final int CAMERA_CAPTURE_IMAGE = 10; //Tam modificable
@@ -38,7 +44,10 @@ public class CreateGift extends BaseDatos {
     private Uri fileUri; //Para ubicar el archivo
     private ImageView MiImageView;
 
-
+    Location location;
+    LocationManager locationManager;
+    LocationListener locationListener;
+    AlertDialog alert = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +56,32 @@ public class CreateGift extends BaseDatos {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initCreate();
-        gps = new GPS(this);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if ( !locationManager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            AlertNoGps();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+        } else {
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        }
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {CreateGift.this.location = location;}
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+            @Override
+            public void onProviderEnabled(String provider) {}
+            @Override
+            public void onProviderDisabled(String provider) {}
+        };
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
     }
     void initCreate(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
@@ -209,6 +243,9 @@ public class CreateGift extends BaseDatos {
     void save(Gift _new){
         if(_new!=null){
             super.saveToSQL(_new.DB());
+            Intent i = new Intent(super.getApplicationContext(),ImagenesVista.class);
+            i.putExtra(ImagenesVista.s_S_IV_argumentoNombre,current);
+            startActivity(i);
         }
     }
 
@@ -235,8 +272,7 @@ public class CreateGift extends BaseDatos {
 
 
     Gift create(){
-        Location loc = gps.getLocation();
-        if(loc==null){
+        if(this.location==null){
             mensaje("Hubo un problema al capturar la ubicación");
             return null;
         }
@@ -246,8 +282,8 @@ public class CreateGift extends BaseDatos {
                 name.getText().toString(),
                 current,
                 Integer.parseInt(precio.getText().toString()),
-                gps.getLocation().getLongitude(),
-                gps.getLocation().getLatitude());
+                this.location.getLongitude(),
+                this.location.getLatitude());
     }
 
 
@@ -256,5 +292,67 @@ public class CreateGift extends BaseDatos {
     }
     public void mensaje(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-    };
+    }
+    /*********
+     * GPS
+     * **/
+    private void AlertNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("El sistema GPS esta desactivado, ¿Desea activarlo?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        alert = builder.create();
+        alert.show();
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        if(alert != null)
+        {
+            alert.dismiss ();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                locationManager.removeUpdates(locationListener);
+            }
+        } else {
+            locationManager.removeUpdates(locationListener);
+        }
+
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            }
+        } else {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        }
+    }
 }

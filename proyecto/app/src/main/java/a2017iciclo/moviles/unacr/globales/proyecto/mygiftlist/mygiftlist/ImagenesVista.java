@@ -1,16 +1,12 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
 
 /**
  * falta generar las imagenes con la carpeta correspondiente
@@ -21,19 +17,18 @@ import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.Gift
  * */
 
 
-public class ImagenesVista extends AppCompatActivity {
+public class ImagenesVista extends BaseDatos {
     static String s_S_IV_argumentoNombre="ImagenesVistaFonderSelected";
     String current;
     Gifts gifts;
-    public static BaseDatos db;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imagenes_vista);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        init();
+        initVista();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -43,11 +38,10 @@ public class ImagenesVista extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        db=new BaseDatos();
-        Mensaje(""+db.sizeLista());
+        Mensaje(""+super.sizeLista());
 
     }
-    void init(){
+    void initVista(){
         current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
         this.setBarra(current);
         this.cargarGifts();

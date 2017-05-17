@@ -1,8 +1,8 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
-import android.app.Application;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,25 +12,31 @@ import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoS
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDBDao;
 
-import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.id.nombre;
-
 /**
  * Created by Luis on 30/4/2017.
  */
 
-public class BaseDatos extends Application {
+public class BaseDatos extends AppCompatActivity {
     GiftDBDao gift_dao;
 
+    public BaseDatos(){
+    }
+
     @Override
-    public void onCreate(){
-        super.onCreate();
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    final void init(){
         DaoMaster.DevOpenHelper masterHelper = new DaoMaster.DevOpenHelper(this, "GIFTS_DB",null); //create database db file if not exist
         SQLiteDatabase db = masterHelper.getWritableDatabase();  //get the created database db file
         DaoMaster master = new DaoMaster(db);//create masterDao
         DaoSession masterSession=master.newSession(); //Creates Session session
         gift_dao=masterSession.getGiftDBDao();
     }
-    
+
+
     public void saveToSQL(GiftDB gift_object) {
         gift_dao.insert(gift_object);
     }
@@ -54,7 +60,7 @@ public class BaseDatos extends Application {
     }
 
     public int sizeLista(){
-        gift_dao.insert(new GiftDB(null,""+4,"descr","nomb","folder",4033,434.0,3434.0));
+     //   gift_dao.insert(new GiftDB(null,""+4,"descr","nomb","folder",4033,434.0,3434.0));
         return gift_dao.queryBuilder().list().size();
     }
 }

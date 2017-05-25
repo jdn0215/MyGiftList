@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:background="#fde4cb"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,8 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@android:color/holo_orange_dark"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:background="#7cd415"
         android:text="Nueva categoría"
         android:textColor="#FFF" />
 
@@ -32,8 +32,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@android:color/holo_orange_dark"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:background="#7cd415"
         android:text="Integrantes"
         android:textColor="#FFF" />
 
@@ -46,9 +45,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/btn_agregar"
-        android:layout_toLeftOf="@+id/btn_agregar"/>
+        android:layout_below="@+id/my_toolbar"
+        android:layout_toLeftOf="@+id/btn_agregar"
+        android:layout_toStartOf="@+id/btn_agregar" />
 
 
 </RelativeLayout>

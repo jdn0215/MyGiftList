@@ -30,6 +30,7 @@ import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoS
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDBDao;
 
+import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.ImagenesVista2.folderactual;
 import static android.R.attr.name;
 
 /**
@@ -91,10 +92,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
 
 
-
+    /*
     public void DandoClickALosItems() {
         ListView list = (ListView) findViewById(R.id.listview);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,9 +109,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }*/
+
+    public void DandoClickALosItems() {
+        ListView list = (ListView) findViewById(R.id.listview);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked,int position, long id)
+            { TextView textView = (TextView) viewClicked;
+                Intent intento = new Intent(getApplicationContext(), ImagenesVista2.class);
+                intento.putExtra("folderactual",v_F_M_folders.get(position));
+                startActivity(intento);
+            }
+        });
+
     }
-
-
     public void CargarTexto(View view){
         // Uso:
         texto =  new EditText(view.getContext());

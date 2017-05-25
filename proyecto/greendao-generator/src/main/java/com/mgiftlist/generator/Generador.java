@@ -16,14 +16,14 @@ public class Generador {
         Schema schema = new Schema(1, "a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db");
         schema.enableKeepSectionsByDefault();
 
-        agregarTablaGifs(schema);
+        agregarTablaGifts(schema);
 
         DaoGenerator db =new DaoGenerator();
         db.generateAll(schema,PROJECT_DIR+"\\app\\src\\main\\java");
 
     }
 
-    private static void agregarTablaGifs(final Schema schema){
+    private static void agregarTablaGifts(final Schema schema){
         Entity gift=addGift(schema);
     }
 

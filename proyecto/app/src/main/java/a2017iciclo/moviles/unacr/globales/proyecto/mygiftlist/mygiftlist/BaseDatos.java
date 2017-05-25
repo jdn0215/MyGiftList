@@ -17,9 +17,10 @@ import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.Gift
  */
 
 public class BaseDatos extends AppCompatActivity {
-    GiftDBDao gift_dao;
+    public GiftDBDao gift_dao;
 
     public BaseDatos(){
+
     }
 
     @Override
@@ -60,7 +61,6 @@ public class BaseDatos extends AppCompatActivity {
     }
 
     public int sizeLista(){
-     //   gift_dao.insert(new GiftDB(null,""+4,"descr","nomb","folder",4033,434.0,3434.0));
-        return gift_dao.queryBuilder().list().size();
+        return gift_dao.loadAll().size();
     }
 }

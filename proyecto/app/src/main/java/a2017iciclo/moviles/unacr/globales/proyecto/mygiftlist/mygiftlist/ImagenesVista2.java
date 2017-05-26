@@ -22,4 +22,7 @@ public class ImagenesVista2 extends BaseDatos{
         inflater.inflate(R.menu.menu_imagenes_vista2, menu);
         return true;
     }
+
+    public void Mensaje(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 }

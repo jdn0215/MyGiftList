@@ -3,6 +3,7 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 
 public class ImagenesVista2 extends BaseDatos{
@@ -24,5 +25,6 @@ public class ImagenesVista2 extends BaseDatos{
     }
 
     public void Mensaje(String msg){
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
 }

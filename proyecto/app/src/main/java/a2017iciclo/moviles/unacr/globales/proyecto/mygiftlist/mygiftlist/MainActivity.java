@@ -3,35 +3,18 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoMaster;
-import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoSession;
-import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDB;
-import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDBDao;
-
-import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.ImagenesVista2.folderactual;
-import static android.R.attr.name;
 
 /**
  * agregar un botón que sirva para crear carpertas
@@ -89,10 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         ListView categorias=(ListView)findViewById(R.id.listview);
         registerForContextMenu(categorias);
+        /***************/
+       // Intent i = new Intent(super.getApplicationContext(),GiftView.class);
+        //startActivity(i);
 
-
-
-
+        /************************/
     }
 
 

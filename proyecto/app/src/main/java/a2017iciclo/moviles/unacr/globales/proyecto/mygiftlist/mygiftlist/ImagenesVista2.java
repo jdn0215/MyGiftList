@@ -27,6 +27,7 @@ import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.Gift
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.Toast;
 
 import static android.media.CamcorderProfile.get;
 
@@ -55,7 +56,8 @@ public class ImagenesVista2 extends BaseDatos{
     }
 
     public void Mensaje(String msg){
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
 
     public void cargarGifts(){
         gifts=super.BuscarPorFolder(folderactual);

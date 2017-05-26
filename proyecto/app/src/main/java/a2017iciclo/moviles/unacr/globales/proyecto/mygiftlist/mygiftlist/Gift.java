@@ -37,6 +37,18 @@ public class Gift{
         );
     }
 
+    public String getDescp() {
+        return descp;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
     public double getLat() {
         return lat;
     }

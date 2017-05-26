@@ -1,5 +1,6 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
+<<<<<<< HEAD
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,11 @@ import java.util.List;
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoMaster;
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoSession;
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.GiftDBDao;
+=======
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+>>>>>>> e69b04715a089a851e24575b38e79a7a5db12436
 
 
 public class ImagenesVista2 extends BaseDatos{
@@ -27,7 +33,11 @@ public class ImagenesVista2 extends BaseDatos{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imagenes_vista2);
         folderactual=super.getIntent().getStringExtra("folderactual");
+<<<<<<< HEAD
         cargarGifts();
+=======
+        super.sizeLista();
+>>>>>>> e69b04715a089a851e24575b38e79a7a5db12436
     }
 
     @Override

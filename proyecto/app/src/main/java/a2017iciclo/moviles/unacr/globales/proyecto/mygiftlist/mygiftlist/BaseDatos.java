@@ -50,7 +50,12 @@ public class BaseDatos extends AppCompatActivity {
         }
         return filtrados;
     }
-
+    Gift getGift(long id){
+        List<GiftDB> lista= gift_dao.queryBuilder().where(GiftDBDao.Properties.Id.eq(id)).list();
+        if(lista.size() != 1)
+            return null;
+        else return lista.get(0).toGiftNormal();
+    }
     public List<Gift> BuscarPorNombre(String nombre){
         List<GiftDB> lista= gift_dao.queryBuilder().where(GiftDBDao.Properties.Nombre.like(nombre)).list();
         List<Gift> filtrados =new ArrayList();

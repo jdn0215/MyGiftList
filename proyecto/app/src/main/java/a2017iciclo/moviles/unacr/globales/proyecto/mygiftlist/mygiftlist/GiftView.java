@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,7 +43,6 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
 
     }
     final void initGift() {
-        //TODO
         long id = super.getIntent().getLongExtra("giftId", 0);
         this.current = super.getGift(id);
         this.contenido = (TextView)super.findViewById(R.id.contenido);
@@ -51,8 +51,11 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
             this.point = new LatLng(0.0,0.0);
             this.contenido.setText("Parece que la información de tu gift ha sido eliminada\nRecuerda no eliminar, ni modificar ningún archivo dentro de la carpeta de MyGiftList");
         }else{
-            Mensaje(this.current.getNombre());
-            this.point = new LatLng(this.current.getLat(),this.current.getLng());
+            TextView txttitulo = (TextView)findViewById(R.id.titulo);
+            txttitulo.setText(current.getNombre());
+            ImageView imgfondo=(ImageView)findViewById(R.id.imagen);
+            imgfondo.setImageResource(Integer.valueOf(current.getImg()));
+            this.point = new LatLng(current.getLat(),current.getLng());
             this.contenido.setText(preparar());
         }
     }

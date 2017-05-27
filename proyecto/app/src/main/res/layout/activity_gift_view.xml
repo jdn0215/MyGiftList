@@ -12,17 +12,24 @@
 
         <TextView
             android:id="@+id/titulo"
-            android:layout_width="match_parent"
+            android:layout_width="190dp"
             android:layout_height="47dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_column="1"
+            android:layout_column="0"
             android:layout_marginTop="36dp"
             android:layout_row="0"
             android:text="TextView"
             android:textColor="?attr/colorPrimary"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="60dp"
+            map:srcCompat="@drawable/carpeta" />
 
     </GridLayout>
 

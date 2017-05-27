@@ -32,6 +32,7 @@ import android.view.MenuInflater;
 import android.widget.Toast;
 
 import static android.R.id.message;
+import static android.R.string.no;
 import static android.media.CamcorderProfile.get;
 
 
@@ -45,12 +46,12 @@ public class ImagenesVista2 extends BaseDatos{
         folderactual = super.getIntent().getStringExtra("folderactual");
 
         //esta linea debo eliminarla
-        //super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D","Darth Vader",folderactual,999991,0.0,0.0));
+        super.gift_dao.deleteAll();
+        super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D\n PD:\"no dejar cerca de basura rebelde\"","Darth Vader",folderactual,999991,65.9667,-18.5333));
         //Mensaje(""+super.sizeLista());
         cargarGifts();
         populateListView();
         registerClickCallback();
-        Mensaje(""+sizeLista());
     }
 
     @Override

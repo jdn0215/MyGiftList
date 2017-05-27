@@ -74,8 +74,8 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
         getSupportActionBar().setTitle(msg);
     }
     String preparar(){
-        String out="Descripción:%s\nPrecio: %d";
-        out = String.format(out,current.getDescp(),current.getPrecio());
+        String out="\nCategoría:%s\n\nDescripción:%s\n\nPrecio: %d";
+        out = String.format(out,current.getFolder(),current.getDescp(),current.getPrecio());
         return out;
     }
 }

@@ -45,7 +45,7 @@ public class ImagenesVista2 extends BaseDatos{
         setContentView(R.layout.activity_imagenes_vista2);
         folderactual = super.getIntent().getStringExtra("folderactual");
 
-        //esta linea debo eliminarla
+        //estas lineas son para probar esta actividad y el giftview
         //super.gift_dao.deleteAll();
         //super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D\n PD:\"no dejar cerca de basura rebelde\"","Darth Vader",folderactual,999991,65.9667,-18.5333));
 

@@ -1,6 +1,8 @@
 package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -36,7 +38,7 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
         this.initGift();
         mMap.addMarker(new MarkerOptions().position(this.point).title("¡AQUÍ!"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(this.point,this.zoom));
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
     }
 
     final void eventos(){
@@ -59,6 +61,9 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
             this.contenido.setText(preparar());
         }
     }
+
+
+
     public void MensajeOK(String msg){
         View v1 = getWindow().getDecorView().getRootView();
         AlertDialog.Builder builder1 = new AlertDialog.Builder( v1.getContext());

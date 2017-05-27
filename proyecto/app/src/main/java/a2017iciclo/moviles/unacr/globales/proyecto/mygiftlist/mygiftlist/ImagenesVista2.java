@@ -50,6 +50,7 @@ public class ImagenesVista2 extends BaseDatos{
         cargarGifts();
         populateListView();
         registerClickCallback();
+        Mensaje(""+sizeLista());
     }
 
     @Override

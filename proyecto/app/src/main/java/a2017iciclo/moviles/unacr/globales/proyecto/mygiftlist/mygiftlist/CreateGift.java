@@ -89,7 +89,7 @@ public class CreateGift extends BaseDatos {
         this.setBarra(current);
         this.initAttributes();
         this.initEvents();
-        /*if(!isDiviceSupportCamara()){
+        /*if(!isDeviceSupportCamara()){
             Toast.makeText(getApplicationContext(),
                     "Lo Setimos, dispositivo no posee camara ",
                     Toast.LENGTH_LONG).show();

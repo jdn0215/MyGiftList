@@ -25,6 +25,6 @@
     <include
         android:id="@+id/include2"
         layout="@layout/content_create_gift"
-        android:layout_height="335dp" />
+        android:layout_height="335dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

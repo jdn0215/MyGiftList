@@ -12,12 +12,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.db.DaoMaster;
@@ -29,23 +31,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Toast;
 
+import static android.R.id.message;
 import static android.media.CamcorderProfile.get;
 
 
 public class ImagenesVista2 extends BaseDatos{
     public static String folderactual;
-    public List<Gift> gifts;
+    public List<Gift> gifts=new ArrayList<Gift>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imagenes_vista2);
-        folderactual=super.getIntent().getStringExtra("folderactual");
+        folderactual = super.getIntent().getStringExtra("folderactual");
 
         //esta linea debo eliminarla
-        super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D","Darth Vader",folderactual,999991,0.0,0.0));
-
-
+        //super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D","Darth Vader",folderactual,999991,0.0,0.0));
+        //Mensaje(""+super.sizeLista());
         cargarGifts();
+        populateListView();
+        registerClickCallback();
     }
 
     @Override
@@ -60,7 +64,9 @@ public class ImagenesVista2 extends BaseDatos{
     }
 
     public void cargarGifts(){
+
         gifts=super.BuscarPorFolder(folderactual);
+
     }
 
     @Override
@@ -75,21 +81,35 @@ public class ImagenesVista2 extends BaseDatos{
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void registerClickCallback() {
+        ListView list = (ListView) findViewById(R.id.imageneslist);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked,
+                                    int position, long id) {
+                Gift clickedCar = gifts.get(position);
+                Intent i = new Intent(getApplicationContext(), GiftView.class);
+                i.putExtra("giftId", position);
+                startActivity(i);
+            }
+        });
+    }
     private void populateListView() {
         ArrayAdapter<Gift> adapter = new MyListAdapter();
-        ListView list = (ListView) findViewById(R.id.listview);
+        ListView list = (ListView) findViewById(R.id.imageneslist);
         list.setAdapter(adapter);
     }
-
 
     private class MyListAdapter extends ArrayAdapter<Gift> {
         public MyListAdapter() {
             super(ImagenesVista2.this, R.layout.giftcargado, gifts);
         }
+
         @Override
         public View getView(int position, View convertView, ViewGroup
                 parent) {
-        // Make sure we have a view to work with (may have been given null)
+            // Make sure we have a view to work with (may have been given null)
             View giftcargado = convertView;
             if (giftcargado == null) {
                 giftcargado = getLayoutInflater().inflate(R.layout.giftcargado,
@@ -98,17 +118,13 @@ public class ImagenesVista2 extends BaseDatos{
             // Find the car to work with.
             Gift currentgift = gifts.get(position);
 
-            }
-        // Fill the view
-        ImageView imageView =
-                (ImageView)itemView.findViewById(R.id.item_icon);
-         imageView.setImageResource(currentCar.getIconID());
-        // Fabricante:
-        TextView makeText = (TextView)
-                itemView.findViewById(R.id.item_txtMake);
-makeText.setText(currentCar.getMake());
+            TextView txtView =(TextView)giftcargado.findViewById(R.id.nombre);
+            txtView.setText(currentgift.nombre);
 
-        return giftcargado;
+            ImageView imgText = (ImageView)giftcargado.findViewById(R.id.fondo);
+            imgText.setImageResource(Integer.valueOf(currentgift.getImg()));
+
+            return giftcargado;
+        }
     }
 }
-J

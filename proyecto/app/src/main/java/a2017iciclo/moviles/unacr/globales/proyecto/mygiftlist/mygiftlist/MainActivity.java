@@ -83,9 +83,11 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.create_new_category:
-                CargarTexto(findViewById(R.id.create_new_category));
+                CargarTexto(findViewById(R.id.btn_agregar));
+
             case R.id.deleteall:
-                //borrar todos
+                v_F_M_folders.eraseall();
+                recreate();
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         builder1.setNegativeButton("Cancelar",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Mensaje("Categoría no agregada");
+
                     }
                 });
 

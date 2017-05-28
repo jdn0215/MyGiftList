@@ -142,24 +142,4 @@ public class ImagenesVista2 extends BaseDatos{
         }
     }
 
-    /*
-    public Bitmap getImage(Uri uri) {
-        Bitmap result = null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        InputStream is = null;
-        try {
-            Bitmap b = Bitmap.createBitmap(100, 100,Bitmap.Config.ARGB_8888);
-            is = super.getApplicationContext().getContentResolver().openInputStream(uri);
-            result = BitmapFactory.decodeStream(is, null, options);
-            is.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return result;
-    }*/
-
 }

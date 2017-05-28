@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.os.Build.VERSION_CODES.M;
+
 /**
  * Created by jdani on 2/4/2017.
  */
@@ -52,6 +54,13 @@ final public class Folder extends ArrayList<String> {
 
     public void remover(String key){
        super.remove(key);
+    }
+    public void eraseall(){
+        int size=v_Sp_F_Preferences.getAll().size();
+        for(int i = 0;i <size; i++){
+            this.v_sp_F_Editor.remove(""+i);
+        }
+        this.v_sp_F_Editor.commit();
     }
     public void Mensaje(String msg){
         Toast.makeText(v_c_F_Contexto, msg, Toast.LENGTH_SHORT).show();

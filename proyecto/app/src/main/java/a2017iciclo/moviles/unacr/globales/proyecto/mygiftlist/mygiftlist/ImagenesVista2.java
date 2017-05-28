@@ -46,29 +46,21 @@ public class ImagenesVista2 extends BaseDatos{
         folderactual = super.getIntent().getStringExtra("folderactual");
         setTitle(folderactual);
         //estas lineas son para probar esta actividad y el giftview
-        super.gift_dao.deleteAll();
-        super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D\n PD:\"no dejar cerca de basura rebelde\"","Darth Vader",folderactual,999991,-83.753428,9.748917));
+        //super.gift_dao.deleteAll();
+        //super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D\n PD:\"no dejar cerca de basura rebelde\"","Darth Vader",folderactual,999991,-83.753428,9.748917));
 
         cargarGifts();
-        populateListView();
-        registerClickCallback();
+        //populateListView();
+        //registerClickCallback();
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_imagenes_vista2, menu);
         return true;
-    }
-
-    public void Mensaje(String msg){
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-    }
-
-    public void cargarGifts(){
-
-        gifts=super.BuscarPorFolder(folderactual);
-
     }
 
     @Override
@@ -83,6 +75,17 @@ public class ImagenesVista2 extends BaseDatos{
                 return super.onOptionsItemSelected(item);
         }
     }
+    public void Mensaje(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void cargarGifts(){
+
+        gifts=super.BuscarPorFolder(folderactual);
+
+    }
+
+
 
     private void registerClickCallback() {
         ListView list = (ListView) findViewById(R.id.imageneslist);

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.ImagenesVista2.folderactual;
 
 /**
  * agregar un botón que sirva para crear carpertas
@@ -72,29 +76,29 @@ public class MainActivity extends AppCompatActivity {
 
         ListView categorias=(ListView)findViewById(R.id.listview);
         registerForContextMenu(categorias);
-        /***************/
-       // Intent i = new Intent(super.getApplicationContext(),GiftView.class);
-        //startActivity(i);
 
-        /************************/
     }
 
 
-    /*
-    public void DandoClickALosItems() {
-        ListView list = (ListView) findViewById(R.id.listview);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View viewClicked,int position, long id)
-            { TextView textView = (TextView) viewClicked;
-                Intent intento = new Intent(getApplicationContext(), ImagenesVista.class);
-                intento.putExtra(ImagenesVista.s_S_IV_argumentoNombre,v_F_M_folders.get(position));
-                startActivity(intento);
-            }
-        });
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-    }*/
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.create_new_category:
+                CargarTexto(findViewById(R.id.create_new_category));
+            case R.id.deleteall:
+                //borrar todos
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     public void DandoClickALosItems() {
         ListView list = (ListView) findViewById(R.id.listview);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

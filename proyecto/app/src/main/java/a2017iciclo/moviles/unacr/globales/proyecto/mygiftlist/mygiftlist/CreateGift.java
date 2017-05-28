@@ -84,7 +84,7 @@ public class CreateGift extends BaseDatos {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
     }
     void initCreate(){
-        current = super.getIntent().getStringExtra(ImagenesVista.s_S_IV_argumentoNombre);
+        current = super.getIntent().getStringExtra("folderactual");
         CreateGift.staticCurrent=current;
         this.setBarra(current);
         this.initAttributes();

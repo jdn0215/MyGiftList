@@ -176,8 +176,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreateContextMenu(menu, v, menuInfo);
             menu.add(0,1,0,"Eliminar");
-            menu.add(0,2,0,"Mostrar detalles");
-            menu.add(0,3,0,"Marcar como favorito");
 
     }
 

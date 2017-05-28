@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -126,53 +128,40 @@ public class ImagenesVista2 extends BaseDatos{
                 giftcargado = getLayoutInflater().inflate(R.layout.giftcargado,
                         parent, false);
             }
-            // Find the car to work with.
+
             Gift currentgift = gifts.get(position);
 
             TextView txtView =(TextView)giftcargado.findViewById(R.id.nombre);
             txtView.setText(currentgift.getNombre());
 
-            ImageView imgGift = (ImageView)giftcargado.findViewById(R.id.fondo);
-            imgGift.setImageBitmap(getBitmapFromURL(currentgift.img));
+            ImageView imgGift = (ImageView)giftcargado.findViewById(R.id.fondogift);
+
+            Bitmap bmImg = BitmapFactory.decodeFile(currentgift.getImg());
+
+            imgGift.setImageBitmap(bmImg);
 
             return giftcargado;
         }
     }
-    private void setPic(ImageView v,String path) {
-        // Get the dimensions of the View
-        int targetW = v.getWidth();
-        int targetH = v.getHeight();
 
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(path, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        //bmOptions.inPurgeable = true;
-
-        Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
-        v.setImageBitmap(bitmap);
-    }
-    public static Bitmap getBitmapFromURL(String src) {
+    /*
+    public Bitmap getImage(Uri uri) {
+        Bitmap result = null;
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        InputStream is = null;
         try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
+            Bitmap b = Bitmap.createBitmap(100, 100,Bitmap.Config.ARGB_8888);
+            is = super.getApplicationContext().getContentResolver().openInputStream(uri);
+            result = BitmapFactory.decodeStream(is, null, options);
+            is.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
-            // Log exception
-            return null;
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-    }
+        return result;
+    }*/
+
 }

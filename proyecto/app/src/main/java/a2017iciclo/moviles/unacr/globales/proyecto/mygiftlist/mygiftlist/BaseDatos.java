@@ -50,6 +50,10 @@ public class BaseDatos extends AppCompatActivity {
         }
         return filtrados;
     }
+    public Gift BuscarEnFolder(String namefolder,long pos){
+        List<GiftDB> lista= gift_dao.queryBuilder().where(GiftDBDao.Properties.Folder.eq(namefolder)).list();
+        return lista.get((int)pos).toGiftNormal();
+    }
     Gift getGift(long id){
         List<GiftDB> lista= gift_dao.queryBuilder().where(GiftDBDao.Properties.Id.eq(id)).list();
         if(lista.size() != 1)

@@ -18,9 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.ImagenesVista2.folderactual;
-
-
 
 public class MainActivity extends AppCompatActivity {
     Folder v_F_M_folders;

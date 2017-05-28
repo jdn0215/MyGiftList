@@ -45,8 +45,8 @@ import static android.media.CamcorderProfile.get;
 
 
 public class ImagenesVista2 extends BaseDatos{
-    public static String folderactual;
-    public List<Gift> gifts=new ArrayList<Gift>();
+    private String folderactual;
+    private List<Gift> gifts=new ArrayList<Gift>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,9 +101,9 @@ public class ImagenesVista2 extends BaseDatos{
             @Override
             public void onItemClick(AdapterView<?> parent, View viewClicked,
                                     int position, long id) {
-                Gift clickedCar = gifts.get(position);
                 Intent i = new Intent(getApplicationContext(), GiftView.class);
                 i.putExtra("giftId", position);
+                i.putExtra("folderactual",folderactual);
                 startActivity(i);
             }
         });

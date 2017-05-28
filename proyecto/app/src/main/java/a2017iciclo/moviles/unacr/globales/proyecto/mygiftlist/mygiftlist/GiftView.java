@@ -16,6 +16,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.R.layout.giftcargado;
+
 public class GiftView extends BaseDatos implements  OnMapReadyCallback{
     GoogleMap mMap;
     LatLng point;
@@ -45,8 +47,9 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
 
     }
     final void initGift() {
-        long id = super.getIntent().getLongExtra("giftId", 0);
-        this.current = super.getGift(id);
+        long id = super.getIntent().getLongExtra("giftId", (long)0);
+        String folderactual=super.getIntent().getStringExtra("folderactual");
+        this.current = super.BuscarEnFolder(folderactual,id);
         this.contenido = (TextView)super.findViewById(R.id.contenido);
         if(current == null){
             Mensaje("UPS!");
@@ -56,7 +59,8 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
             TextView txttitulo = (TextView)findViewById(R.id.titulo);
             txttitulo.setText(current.getNombre());
             ImageView imgfondo=(ImageView)findViewById(R.id.imagen);
-            setPic(imgfondo,current.getImg());
+            Bitmap bmImg = BitmapFactory.decodeFile(current.getImg());
+            imgfondo.setImageBitmap(bmImg);
             this.point = new LatLng(current.getLat(),current.getLng());
             this.contenido.setText(preparar());
         }
@@ -83,28 +87,5 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
         out = String.format(out,current.getFolder(),current.getDescp(),current.getPrecio());
         return out;
     }
-    private void setPic(ImageView v,String path) {
-        // Get the dimensions of the View
-        int targetW = v.getWidth();
-        int targetH = v.getHeight();
 
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(path, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
-        Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
-        v.setImageBitmap(bitmap);
-
-    }
 }

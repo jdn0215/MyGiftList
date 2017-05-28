@@ -21,6 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,10 +130,10 @@ public class ImagenesVista2 extends BaseDatos{
             Gift currentgift = gifts.get(position);
 
             TextView txtView =(TextView)giftcargado.findViewById(R.id.nombre);
-            txtView.setText(currentgift.nombre);
+            txtView.setText(currentgift.getNombre());
 
             ImageView imgGift = (ImageView)giftcargado.findViewById(R.id.fondo);
-            setPic(imgGift, currentgift.getImg());
+            imgGift.setImageBitmap(getBitmapFromURL(currentgift.img));
 
             return giftcargado;
         }
@@ -156,5 +160,19 @@ public class ImagenesVista2 extends BaseDatos{
 
         Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
         v.setImageBitmap(bitmap);
+    }
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
     }
 }

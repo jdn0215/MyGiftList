@@ -102,7 +102,7 @@ public class ImagenesVista2 extends BaseDatos{
             public void onItemClick(AdapterView<?> parent, View viewClicked,
                                     int position, long id) {
                 Intent i = new Intent(getApplicationContext(), GiftView.class);
-                i.putExtra("giftId", position);
+                i.putExtra("giftId", ((long)position));
                 i.putExtra("folderactual",folderactual);
                 startActivity(i);
             }
@@ -135,9 +135,7 @@ public class ImagenesVista2 extends BaseDatos{
             txtView.setText(currentgift.getNombre());
 
             ImageView imgGift = (ImageView)giftcargado.findViewById(R.id.fondogift);
-
             Bitmap bmImg = BitmapFactory.decodeFile(currentgift.getImg());
-
             imgGift.setImageBitmap(bmImg);
 
             return giftcargado;

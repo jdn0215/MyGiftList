@@ -26,6 +26,7 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
     TextView contenido;
     @Override
      public void onCreate(Bundle savedInstanceState) {
+        setTitle("Gift");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gift_view);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()

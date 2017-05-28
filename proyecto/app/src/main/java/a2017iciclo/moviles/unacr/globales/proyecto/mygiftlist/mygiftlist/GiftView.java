@@ -56,7 +56,7 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
             TextView txttitulo = (TextView)findViewById(R.id.titulo);
             txttitulo.setText(current.getNombre());
             ImageView imgfondo=(ImageView)findViewById(R.id.imagen);
-            imgfondo.setImageResource(Integer.valueOf(current.getImg()));
+            setPic(imgfondo,current.getImg());
             this.point = new LatLng(current.getLat(),current.getLng());
             this.contenido.setText(preparar());
         }
@@ -82,5 +82,29 @@ public class GiftView extends BaseDatos implements  OnMapReadyCallback{
         String out="\nCategoría:%s\n\nDescripción:%s\n\nPrecio: %d";
         out = String.format(out,current.getFolder(),current.getDescp(),current.getPrecio());
         return out;
+    }
+    private void setPic(ImageView v,String path) {
+        // Get the dimensions of the View
+        int targetW = v.getWidth();
+        int targetH = v.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
+        v.setImageBitmap(bitmap);
+
     }
 }

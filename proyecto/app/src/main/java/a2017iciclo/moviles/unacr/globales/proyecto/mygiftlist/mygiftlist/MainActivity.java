@@ -20,12 +20,6 @@ import android.widget.Toast;
 
 import static a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist.ImagenesVista2.folderactual;
 
-/**
- * agregar un botón que sirva para crear carpertas
- * menu contextual para eliminar o renombrar carpetas
- *L-> si ok toy en eso :v
- * */
-
 
 
 public class MainActivity extends AppCompatActivity {

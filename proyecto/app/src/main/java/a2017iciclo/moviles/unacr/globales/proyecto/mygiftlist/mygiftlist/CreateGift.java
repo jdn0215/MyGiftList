@@ -243,8 +243,8 @@ public class CreateGift extends BaseDatos {
     void save(Gift _new){
         if(_new!=null){
             super.saveToSQL(_new.DB());
-            Intent i = new Intent(super.getApplicationContext(),ImagenesVista.class);
-            i.putExtra(ImagenesVista.s_S_IV_argumentoNombre,current);
+            Intent i = new Intent(super.getApplicationContext(),ImagenesVista2.class);
+            i.putExtra("folderactual",current);
             startActivity(i);
         }
     }

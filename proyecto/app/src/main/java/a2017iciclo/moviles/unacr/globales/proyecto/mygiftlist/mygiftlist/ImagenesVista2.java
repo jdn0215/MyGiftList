@@ -4,6 +4,8 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,8 +52,8 @@ public class ImagenesVista2 extends BaseDatos{
         //super.saveToSQL(new GiftDB((long)super.sizeLista(),""+R.drawable.vader,"figurilla muy repro de vader :D\n PD:\"no dejar cerca de basura rebelde\"","Darth Vader",folderactual,999991,-83.753428,9.748917));
 
         cargarGifts();
-        //populateListView();
-        //registerClickCallback();
+        populateListView();
+        registerClickCallback();
     }
 
 
@@ -126,10 +128,33 @@ public class ImagenesVista2 extends BaseDatos{
             TextView txtView =(TextView)giftcargado.findViewById(R.id.nombre);
             txtView.setText(currentgift.nombre);
 
-            ImageView imgText = (ImageView)giftcargado.findViewById(R.id.fondo);
-            imgText.setImageResource(Integer.valueOf(currentgift.getImg()));
+            ImageView imgGift = (ImageView)giftcargado.findViewById(R.id.fondo);
+            setPic(imgGift, currentgift.getImg());
 
             return giftcargado;
         }
+    }
+    private void setPic(ImageView v,String path) {
+        // Get the dimensions of the View
+        int targetW = v.getWidth();
+        int targetH = v.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        //bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(path, bmOptions);
+        v.setImageBitmap(bitmap);
     }
 }

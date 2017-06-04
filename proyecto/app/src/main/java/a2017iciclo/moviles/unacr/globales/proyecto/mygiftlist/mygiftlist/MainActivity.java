@@ -3,8 +3,10 @@ package a2017iciclo.moviles.unacr.globales.proyecto.mygiftlist.mygiftlist;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -88,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.deleteall:
                 v_F_M_folders.eraseall();
                 recreate();
+            case R.id.intro:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=IqNvmkS8NNA&t=44s")));
+                Log.i("Video", "Video Playing....");
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

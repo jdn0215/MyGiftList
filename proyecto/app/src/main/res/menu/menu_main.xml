@@ -4,4 +4,6 @@
         android:title="Crear nueva" />
     <item android:id="@+id/deleteall"
         android:title="Eliminar todas" />
+    <item android:id="@+id/intro"
+        android:title="Introduccion"/>
 </menu>

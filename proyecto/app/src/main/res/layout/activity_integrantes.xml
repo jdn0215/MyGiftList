@@ -10,7 +10,7 @@
 
     <TableLayout
         android:layout_width="297dp"
-        android:layout_height="504dp"
+        android:layout_height="450dp"
         tools:layout_editor_absoluteX="58dp"
         tools:layout_editor_absoluteY="16dp">
 
@@ -122,6 +122,7 @@
                 tools:layout_editor_absoluteY="405dp" />
 
         </TableRow>
+
     </TableLayout>
 
 </android.support.constraint.ConstraintLayout>

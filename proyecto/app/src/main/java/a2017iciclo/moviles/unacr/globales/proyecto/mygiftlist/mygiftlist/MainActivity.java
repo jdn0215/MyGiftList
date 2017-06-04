@@ -86,10 +86,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.create_new_category:
                 CargarTexto(findViewById(R.id.btn_agregar));
-
+                return true;
             case R.id.deleteall:
                 v_F_M_folders.eraseall();
                 recreate();
+                return true;
             case R.id.intro:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=IqNvmkS8NNA&t=44s")));
                 Log.i("Video", "Video Playing....");

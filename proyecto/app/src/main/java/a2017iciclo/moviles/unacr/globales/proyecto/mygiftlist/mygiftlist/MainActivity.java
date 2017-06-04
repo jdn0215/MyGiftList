@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
         DandoClickALosItems();
 
-        ListView categorias=(ListView)findViewById(R.id.listview);
-        registerForContextMenu(categorias);
+        //ListView categorias=(ListView)findViewById(R.id.listview);
+        //registerForContextMenu(categorias);
 
     }
 

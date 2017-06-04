@@ -3,7 +3,5 @@
         <item android:id="@+id/create_new"
             android:icon="@drawable/common_google_signin_btn_text_dark"
         android:title="Agregar" />
-        <item android:id="@+id/deleteallgiftsfolder"
-            android:icon="@drawable/common_google_signin_btn_text_dark"
-            android:title="Eliminar gifts del folder" />
+
 </menu>
